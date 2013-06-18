@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Conny Graumans (EDI Agro Vereniging) -->
+<!-- 130501, CG: eerste aanzet.-->
+<!-- 130530, CG: crop aangepast in crpr-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crpr="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:9" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
+	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="http://www.unece.org/uncefact/data/standard/UnqualifiedDataType_10p0.xsd"/>
+	<xsd:import namespace="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" schemaLocation="http://www.unece.org/uncefact/data/standard/QualifiedDataType_9p0.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0.xsd"/>
+	<xsd:element name="CropRecordingMessage" type="crpr:CropRecordingMessageType">
+		<xsd:annotation>
+			<xsd:documentation>Standaard EDI-Crop-bericht voor het uitwisselen van teeltregistraties.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="AbstractRingPropertyType">
+		<xsd:sequence>
+			<xsd:element name="LinearRing" type="crpr:LinearRingType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AdvisedMineralsFarmType">
+		<xsd:annotation>
+			<xsd:documentation>Is het totaal van de geadviseerde meststoffen, niet van de reeds verbruikte meststoffen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AdvisedNitrogenOrganic" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Totaal geadviseerde hoeveelheid stikstof uit dierlijke mest op bedrijfsniveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AdvisedNitrogenTotal" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Totaal geadviseerde hoeveelheid stikstof op bedrijfsniveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AdvisedPhosphateOrganic" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Totaal geadviseerde hoeveeldheid fosfaat uit organische mest op bedijfsniveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AdvisedPhosphateTotal" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Totaal geadviseerde hoeveelheid fosfaat op bedrijfsnveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AllowedMineralsFarmType">
+		<xsd:annotation>
+			<xsd:documentation>De voor het betreffende bedrijfs als geheel vastgestelde wettelijk toegestane hoeveelheden werkzame stikstof en werkzaam fosfaat.
+In het geval dat GebruiksruimteBedrijf wordt ingevuld, dan in ieder geval N-dierlijk ook invullen, de andere drie data-elementen zijn optioneel.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AllowedNitrogenOrganic" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Gebruiksnorm voor stikstof uit dierlijke mest. Is afhankelijk van derogatie ja/nee en ingeval van derogatie ook van de hoeveelheid gebruikte staldierenmest en graasdierenmest.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AllowedNitrogenTotal" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>De totale gebruiksnorm aan werkzame stikstof, zowel uit dierlijke mest als uit kunstmest.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AllowedPhosphateOrganic" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Gebruiksnorm voor fosfaat uit organische mest.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AllowedPhosphateTotal" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>De totale gebruiksnorm voor fosfaat uit zowel organische mest als uit kunstmest.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CertificateType">
+		<xsd:sequence>
+			<xsd:element name="CertificateID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Het certificaatnummer.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CertificateDesignator" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De naam van het certificaat.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CertifyingAgencyName" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De naam van de certificerende organisatie die het certificaat heeft toegekend.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CerificateStartDate" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De datum waarop het certificaat van kracht is geworden.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CerificateEndDate" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De datum waarop het certificaat niet langer van kracht is.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CompositionType">
+		<xsd:sequence>
+			<xsd:element name="ProductElementCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding van het element (N, P2O5, K20, etc).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductElementDesignator" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Naam van het element.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Quantity" type="cdt:Decimal8_2Type">
+				<xsd:annotation>
+					<xsd:documentation>De hoeveelheid van een element per eenheid hulpstof. De samenstelling van meststoffen wordt uitgedrukt in procent element per kg meststof.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ConcentrationCode" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Percentage (procent per kg) van het betreffende element in de hulpstof.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContactPersonType">
+		<xsd:sequence>
+			<xsd:element name="FamilyName" type="udt:TextType"/>
+			<xsd:element name="GivenName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="FamilyNamePrefix" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="Title" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContractType">
+		<xsd:sequence>
+			<xsd:element name="ContractID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Contractnummer.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ContractDate" type="udt:DateTimeType">
+				<xsd:annotation>
+					<xsd:documentation>Datum waarop het contractvan kracht is geworden.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ContractIssuerID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke ID van de partij die het contract heeft afgegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ContractIssuerName" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Naam van de partij die het contract heeft afgegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyFarmID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Identifier van het bedrijf zoals bekend bij de partij die het contract heeft afgegeven (bijv. een intern klantnummer).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CropRecordingMessageType">
+		<xsd:sequence>
+			<xsd:element name="ExchangedDocument" type="crpr:DocumentType">
+				<xsd:annotation>
+					<xsd:documentation>Algemene gegevens die betrekking hebben op het bericht zelf.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Farm" type="crpr:FarmType">
+				<xsd:annotation>
+					<xsd:documentation>Het agrarische bedrijf.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CropFieldType">
+		<xsd:sequence>
+			<xsd:element name="CropFieldID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identificatie van het perceel.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropFieldDesignator" type="udt:TextType">
+				<xsd:annotation>
+					<xsd:documentation>Door de teler toegekende aanduiding voor het stuk grond. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyCropFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding voor het gewasperceels binnen een andere domein. Mag meerder keren voorkomen.
+Mogelijkheid om een extra identificatie, zoals bekend bij een derde partij, aan het perceel mee te geven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RefCertificateID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar een op Farm-niveau vermeld certificaat. Om aan te geven dat de teelt bijvoorbeeld conform GlobalGap is.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BeginDate" type="udt:DateTimeType">
+				<xsd:annotation>
+					<xsd:documentation>De datum waarop het CropField is ontstaan (veelal het begin van de teelt als administratieve eenheid, bijvoorbeeld de zaaidatum van een nieuw gewas).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De datum waarop het CropField is beeindigd (veelal het einde van de teelt als administratieve eenheid, bijvoorbeeld de oogstdatum van een gewas).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Country" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan of het perceel zich in Nederland of in het Buitenland bevindt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GLN" type="udt:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Global Location Number van GS1 voor het wereldwijd uniek identificeren van een locatie.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Area" type="cdt:Decimal10_2Type">
+				<xsd:annotation>
+					<xsd:documentation>De oppervlakte van het CropField.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Code van de grondsoort: KY = klei, KV = veen, DZ = zand, LO = löss.
+Voor grondsoorten de coderingslijst voor wettelijke grondsoorten hanteren; dit is de coderingslijst die gebruikt wordt in het kader van de Meststoffenwet.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropTypeCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Code gewassoort hoofdteelt. Bepaalt of het bouwland of grasland betreft.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VarietyCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Binnen Nederland uniek nummer voor een ras, toegekend door AgroConnect.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductionTypeCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Bijvoorbeeld: 1e, 2e, 3e teelt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropProductionPurposeCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Codering voor het productiedoel (het teeltdoel: friet, consumptie, zetmeel, baktarwe, brouwgerst, etc.).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropProductionSequence" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Codelijst: VRTLT = voorteelt, HFDTLT = hoofdteelt, VOLGTLT = volgteelt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropProductionPeriodCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Code voor de  teeltperiode: zomer, winter, meerjarig, 1e jaars, 2e jaars, voor 21dec, na 21dec, blijvend, tijdelijk, etc.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PrecedingCropField" type="crpr:PrecedingCropFieldType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar het voorgaande CropField.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RefContractID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar een op Farm-niveau genoemd contract welke betrekking heeft op dit CropField.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropFieldObservation" type="crpr:ObservationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Op het CropField uitgevoerde waarneming of uitgevoerd onderzoek.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="WeatherObservation" type="crpr:ObservationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Klimaatwaarneming voor het betreffende CropField.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Omtrek van het betreffende stuk grond.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Operation" type="crpr:OperationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Uit te voeren of uitgevoerde bewerking op het betreffende CropField.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProduceDelivery" type="crpr:DeliveryType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Levering. Bijvoorbeeld een vracht bieten of aardappelen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DeliveryType">
+		<xsd:sequence>
+			<xsd:element name="DeliveryDateTime" type="udt:DateTimeType">
+				<xsd:annotation>
+					<xsd:documentation>Datum levering.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DeliveryNoteID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Leverbonnummer.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DeliveryNoteQuantity" type="udt:QuantityType">
+				<xsd:annotation>
+					<xsd:documentation>Hoeveelheid geleverd product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DeliveryLocationID" type="udt:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding van de locatie waarvandaan is afgeleverd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DeliveryLocationName" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Naam van de locatie waarvandaan het product is afgeleverd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DeliveryCharacteristic" type="crpr:PropertyValueType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Aanvullende eigenschappen m.b.t. de levering, bijvoorbeeld m.b.t. de kwaliteit van het afgeleverde product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DeliveryCharacteristicType">
+		<xsd:sequence>
+			<xsd:element name="DeliveryCharacteristicCode" type="udt:CodeType"/>
+			<xsd:element name="DeliveryCharacteristicValue" type="udt:TextType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DirectPositionListType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="srsName"/>
+				<xsd:attribute name="srsDimension"/>
+				<xsd:attribute name="axisLabels"/>
+				<xsd:attribute name="uomLabels"/>
+				<xsd:attribute name="count"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="DocumentType">
+		<xsd:sequence>
+			<xsd:element name="ID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identificatie van het bericht zoals toegekend door de verzendende partij. Hier mag bijvoorbeeld een timestamp gebruikt worden.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Type" type="cdt:MessageTypeType">
+				<xsd:annotation>
+					<xsd:documentation>Aanduiding van het type bericht. Voor het EDI-Crop-croppingadvice is dit CRPADV, voor EDI-Crop-croppingscheme is dit CRPSCH.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EdiCropVersion" type="cdt:EdiCropVersionType">
+				<xsd:annotation>
+					<xsd:documentation>De versie van het EDI-Teelt++ datamodel waarop het bericht is gebasseerd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MessageTypeVersion" type="cdt:MessageTypeVersionType">
+				<xsd:annotation>
+					<xsd:documentation>Het versienummer van de specificaties van het standaard bericht. Voor EDI-Crop v4.0 is dit bijvoorbeeld 4.0.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IssueDate" type="udt:DateTimeType">
+				<xsd:annotation>
+					<xsd:documentation>De datum waarop het bericht is aangemaakt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropYear" type="cdt:Decimal4Type">
+				<xsd:annotation>
+					<xsd:documentation>Het jaar waarop het bericht betrekking heeft. In het geval het een meerjarig gewas betreft is dit  het jaar waarin de (eerstvolgende) oogst plaats heeft. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ReportCount" type="udt:NumericType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>N.v.t. voor EDI-Crop.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Description" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>N.v.t. voor EDI-Crop.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LineItem" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>N.v.t. voor EDI-Crop.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Issuer" type="crpr:SpecifiedPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar de teler of organisatie die het bericht afgeeft. In het geval van een adviesbericht bijvoorbeeld: Agrifirm, CZAV, ComponentAgro, etc.). </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Sender" type="crpr:SpecifiedPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar het systeem dat het advies heeft opgeleverd, bijvoorbeeld: Dacom of ComponentAgro.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Receiver" type="crpr:SpecifiedPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar de ontvangende organisatie of bedrijf (hoeft niet in alle gevallen het bedrijf te zijn waarvoor het advies wordt afgegeven).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EmailCommunicationType">
+		<xsd:sequence>
+			<xsd:element name="URIID" type="udt:IDType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExactTimingType">
+		<xsd:sequence>
+			<xsd:element name="BeginDate" type="udt:DateTimeType">
+				<xsd:annotation>
+					<xsd:documentation>Datum vanaf wanneer de bewerking uitgevoerd kan worden.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Datum tot wanneer de bewerking uitgevoerd kan worden.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CropStage" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Korte aanduiding van het gewasstadium of de gewastoestand waarbij de geadviseerde bemesting dient te worden uitgevoerd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FarmClassificationType">
+		<xsd:sequence>
+			<xsd:element name="ClassificationCode" type="udt:CodeType"/>
+			<xsd:element name="ClassificationIndicator" type="cdt:YesNoType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FarmType">
+		<xsd:sequence>
+			<xsd:element name="FarmContact" type="crpr:SpecifiedPartyType">
+				<xsd:annotation>
+					<xsd:documentation>De contactgegegevens van het agrarische bedrijf.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyFarmID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unieke referentie naar een bedrijf zoals gebruikt binnen de context van een derde partij (bijvoorbeeld een klantnummer, UBN, etc.)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Certificate" type="crpr:CertificateType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan aan welke certificaten het bedrijf voldoet (bijv. GlobalGap, etc.). Het het niveau van CropField kan naar één of meerdere certificaten worden verwezen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Contract" type="crpr:ContractType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Overeenkomst. Bijvoorbeeld een leveringscontract zoals dat met een afnemer is afgesloten. Op het niveau van CropField kan hier met RefContractID naar worden verwezen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Field" type="crpr:FieldType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Kavel zoals deze binnen het bedrijf wordt onderscheiden. Op één kavel kunnen over de jaren heen verschillende CropFields voorkomen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Product" type="crpr:ProductType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Stamgegevens van de in het advies gebruikte meststoffen. Is niet verplicht om in het adviesbericht mee te sturen. Kan naar verwezen worden via ProductTypeCode.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FieldType">
+		<xsd:annotation>
+			<xsd:documentation>Kavel zoals deze binnen het bedrijf wordt onderscheiden. Op één kavel kunnen over de jaren heen verschillende CropFields voorkomen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="FieldID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identficatie van de Kavel zoals deze door de teler is toegekend.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FieldDesignator" type="udt:TextType">
+				<xsd:annotation>
+					<xsd:documentation>Door de teler toegekende aanduiding voor de kavel. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding voor de kavel binnen een andere domein.
+Mogelijkheid om een extra identificatie, zoals bekend bij een derde partij, aan de kavel mee te geven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BeginDate" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Datum waarop het Field is aangemaakt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Datum waarop het Field is komen te vervallen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Area" type="udt:MeasureType">
+				<xsd:annotation>
+					<xsd:documentation>De oppervlakte van de kavel.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Code van de grondsoort: KY = klei, KV = veen, DZ = zand, LO = löss.
+Voor grondsoorten de coderingslijst voor wettelijke grondsoorten hanteren; dit is de coderingslijst die gebruikt wordt in het kader van de Meststoffenwet.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegularOrOrganicCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Reguliere, in overgang of organische teelt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SoilObservation" type="crpr:ObservationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Waarnemingen aan de grond op het niveau van een Field (o.a. Pw- en Pal-getal).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0"/>
+			<xsd:element name="CropField" type="crpr:CropFieldType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Het stuk grond waarop het gewas geteeld wordt. Over de jaren heen kunnen op één gewasperceel meerdere teelten plaats vinden. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GUIDType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="IssuingAgency" type="cdt:IssuingAgencyType"/>
+				<xsd:attribute name="EnterpriseID" type="cdt:EnterpriseIDType"/>
+				<xsd:attribute name="ItemIdType" type="cdt:ItemIdTypeType"/>
+				<xsd:attribute name="ItemIdNumber" type="cdt:ItemIdNumberType"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="LinearRingType">
+		<xsd:sequence>
+			<xsd:element name="posList" type="crpr:DirectPositionListType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NutrientBalanceCropType">
+		<xsd:sequence>
+			<xsd:element name="AllowedNitrogenTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="AllowedPhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="AllowedPhosphateOrganic" type="cdt:Decimal12Type"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NutrientBalanceFarmType">
+		<xsd:annotation>
+			<xsd:documentation>De Gebruiksruimte resterend na het middels dit bericht afgegeven advies.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BalanceNitrogenOrganic" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Resterende gebruiksruimte voor stikstof uit dierlijke mest, na het afgegeven advies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BalanceNitrogenTotal" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Resterende gebruiksruimte voor stikstof in het algemeen, na het afgegeven advies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BalancePhosphateOrganic" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Resterende gebruiksruimte voor fosfaat uit organisch materiaal na het afgegeven advies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BalancePhosphateTotal" type="cdt:Decimal12Type">
+				<xsd:annotation>
+					<xsd:documentation>Resterende gebruiksruimte voor fosfaat in het algemeen, na het afgegeven advies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ObservationType">
+		<xsd:sequence>
+			<xsd:element name="ObservationID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identifier voor de uitgevoerde waarneming.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ParameterCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identifier van de eigenschap die is waargenomen c.q. is vastgesteld.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ParameterValue" type="udt:MeasureType">
+				<xsd:annotation>
+					<xsd:documentation>Waarde van de eigenschap die is waargenomen c.q. is vastgesteld.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ParameterDesignator" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Aanduiding van de eigenschap die is waargenomen c.q. is vastgesteld.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ObservationActualStartDateTime" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Begintijd waarneming.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ObservationActualEndDateTime" type="udt:DateTimeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Eindtijd waarneming.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ObservationTimeFrame" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Momentopname, waarneming gedurende langere tijd, waarneming op begin en eind periode, etc.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DepthUpperBoundary" type="udt:MeasureType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Bovengrens van de laag waarbinnen de waarneming is gedaan.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DepthLowerBoundary" type="udt:MeasureType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Ondergrens van de laag waarbinnen de waarneming is gedaan.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Depth" type="udt:MeasureType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Hoogte of diepte t.o.v. het maaiveld waarop de waarneming is gedaan.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SampleProtocol" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Per monster moet aangegeven worden of het een ‘standaard’ protocol betreft of een monsters volgens de ‘gestratificeerde steekproefmethode’ waarmee het perceel mogelijk in aanmerking komt voor de fosfaatnormen voor fosfaatarme grond.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AnalysedMethodLocalTypeCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Code van de alaysemethode die is toegepast voor het vaststellen van de waarde van de waarneming.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OperationType">
+		<xsd:sequence>
+			<xsd:element name="OperationID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identificatie van de bewerking.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyOperationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Mogelijkheid om een extra identificatie aan bewerking mee te geven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OperationStage" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Status van de operation: geadviseerd, gepland, utgevoerd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CulturalPracticeCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Standaard code voor de soort bewerking.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OperationTechniqueCode" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Standaard code voor toegepaste techniek, bijv: breedwerpig strooien, rijenbemesting, spuiten, etc.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TaskTypeCode" type="udt:CodeType" minOccurs="0"/>
+			<xsd:element name="ExactTiming" type="crpr:ExactTimingType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft begin- en einddatum (en eventueel tijd) van de periode waarbinnen de bewerking is of moet worden uitgevoerd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OperationCharacteristic" type="crpr:PropertyValueType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Eigenschappen van de uitgevoerd of geplande bewerking.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TreatmentZone" type="crpr:TreatmentZoneType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Behandelstrook. Is in veel gevallen gelijk aan de begrenzing va CropField. Maar het beidt de mogelijkheid om binnen één CropField meerdere TreatmentZones te onderscheiden met per zone bijvoorbeeld een andere dosering van een ander soortige meststof.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PartyContactType">
+		<xsd:sequence>
+			<xsd:element name="ID" type="udt:IDType"/>
+			<xsd:element name="PersonName" type="udt:TextType"/>
+			<xsd:element name="DepartmentName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="JobTitle" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="Responsibility" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="Type" type="udt:CodeType" minOccurs="0"/>
+			<xsd:element name="AdditionalIdentification" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="Telephone" type="crpr:SpecifiedCommunicationType" minOccurs="0"/>
+			<xsd:element name="MobileTelephone" type="crpr:SpecifiedCommunicationType" minOccurs="0"/>
+			<xsd:element name="Fax" type="crpr:SpecifiedCommunicationType" minOccurs="0"/>
+			<xsd:element name="Email" type="crpr:SpecifiedCommunicationType" minOccurs="0"/>
+			<xsd:element name="ContactPerson" type="crpr:ContactPersonType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PhosphateConditionType">
+		<xsd:annotation>
+			<xsd:documentation>Informatie over de fosfaatconditie op bedrijfsniveau.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ArablelandPhosphatePoor" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Fosfaattoestand arm/ laag/ neutraal/ hoog is een afgeleide kwalificering vanuit de meststoffenwet. Betreft het aantal hectares op bedrijfsniveau  dat in die categorie valt. Voor de fosfaattoestand is het Pw getal maatgevend. Als het Pw getal van het perceel bekend is (voor grasland wordt gesproken van PAL) dan kan de fosfaattoestand worden afgeleid en daarmee ook de wettelijke gebruiksnorm voor fosfaat. Wordt uitgedrukt in aantal ha op bedrijfsniveau.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ArablelandPhosphateLow" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ArablelandPhosphateNeutral" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ArablelandPhosphateHigh" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GrasslandPhosphatePoor" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GrasslandPhosphateLow" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GrasslandPhosphateNeutral" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GrasslandPhosphateHigh" type="cdt:Decimal6Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Zie toelichting ArablelandPhosphatePoor.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PhosphateTransferOrganicNextYear" type="cdt:Decimal12Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Verrekening hoeveelheid fosfaat uit organische meststoffen met het volgende jaar.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PhosphateTransferTotalNextYear" type="cdt:Decimal12Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Verrekening hoeveelheid fosfaat uit organische en overige meststoffen me het volgende jaar.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PhosphateTransferOrganicPreviousYear" type="cdt:Decimal12Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Het overschot aan fosfaat uit organische meststoffen van het voorgaande jaar, dit jaar in mindering brengen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PhosphateTransferTotalPreviousYear" type="cdt:Decimal12Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Het overschot aan fosfaat uit organische en overige meststoffen van het voorgaande jaar, dit jaar in mindering brengen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PolygonType">
+		<xsd:annotation>
+			<xsd:documentation>Omtrek en exacte locatie van het perceel in de vorm van een reeks XY-coördinaten (polygon, outerring/interring, poslist, XY-coördinaat (bijv. 29381.22 50328.35), etc..).
+Border wordt gebruikt om bij padplanning de perceelszijden voor wendakkers en rijpaden aan te kunnen geven.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="exterior" type="crpr:AbstractRingPropertyType"/>
+			<xsd:element name="interior" type="crpr:AbstractRingPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PrecedingCropFieldType">
+		<xsd:sequence>
+			<xsd:element name="PrecedingCropFieldID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>In het geval er sprake is van een voorteelt, verwijzing naar de unieke identificatie van het gewasperceels van de voorteelt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Area" type="cdt:Decimal10_2Type">
+				<xsd:annotation>
+					<xsd:documentation>Het areaal van het voorgaande CropField dat ligt binnen het huidige CropField.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProductAllocationType">
+		<xsd:sequence>
+			<xsd:element name="ProductAllocationID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding het verbruik-oplevering.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyAllocationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Extra identificatie van het vrebruik-oplevering.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AllocationType" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Het type verbruik-oplevering (meststof, gewasbeschermingsmiddel, water, product).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding vanhet soort product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductDesignator" type="udt:TextType">
+				<xsd:annotation>
+					<xsd:documentation>Naam van het soort product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Quantity" type="crpr:QuantityType">
+				<xsd:annotation>
+					<xsd:documentation>Hoeveelheid en eenheid van het soort product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BatchID" type="udt:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Optionele verwijzing naar een specifieke batch van een product. In dit geval heeft de boer de specificatie van de partij doorgegeven (bv een veeboer, of een akkerbouwer met opslag, die zijn voorraad organische mest specificeert.)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BatchThirdPartyID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Optionele verwijzing naar een specifieke batch van een product. In dit geval verwijst de adviseur naar een specifieke partij. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De oppervlakte in ha waarop het verbruik-oplevering betrekking heeft.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProduceAllocationType">
+		<xsd:sequence>
+			<xsd:element name="ProduceAllocationID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Uniek nummer van de registratie van een hoeveelheid geoogst product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyAllocationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Mogelijkheid om een extra identificatie vvoor het geoogst product toe te kennen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProduceID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding van de soort geoogst product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProduceDesignator" type="udt:TextType">
+				<xsd:annotation>
+					<xsd:documentation>Naam van het soort geoogst product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Quantity" type="crpr:QuantityType">
+				<xsd:annotation>
+					<xsd:documentation>Hoeveelheid geoogst product.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BatchID" type="udt:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Batchnummer van de partij waaraan het geoogst product is toegevoegd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BatchThirdPartyID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Optionele verwijzing naar een batchnummer dat door en derde partij een een partij geoogst product is toegekend.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De oppervlakte in ha die het geoogst product heeft opgeleverd.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProductType">
+		<xsd:sequence>
+			<xsd:element name="ProductID" type="udt:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Unieke aanduiding van de soort te gebruiken hulpstof. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductDesignator" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Naam van de soort aan te wenden hulpstof.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegulatoryWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De wettelijke werkingscoëfficient zoals vastgesteld voor de mineralenboekhouding.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AgronomicWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>De landbouwkundige werkingscoëfficient.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Quantity" type="crpr:QuantityType" minOccurs="0"/>
+			<xsd:element name="AmountPerAreaUnit" type="crpr:QuantityType" minOccurs="0"/>
+			<xsd:element name="Composition" type="crpr:CompositionType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Samenstelling van de hulpstof.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PropertyValueType">
+		<xsd:sequence>
+			<xsd:element name="PropertyVariableCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Code van de betreffende eigenschap.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PropertyVariableValue" type="udt:TextType">
+				<xsd:annotation>
+					<xsd:documentation>Waarde van de betreffende eigenschap.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuantityType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="unitCode" type="cdt:unitCodeType"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="RelativeTimingType">
+		<xsd:sequence>
+			<xsd:element name="RelativeNumberOfDaysMin" type="udt:DateTimeType"/>
+			<xsd:element name="RelativeNumberOfDaysMax" type="udt:DateTimeType"/>
+			<xsd:element name="RefCulturalPracticeCode" type="udt:CodeType" minOccurs="0"/>
+			<xsd:element name="RefTemperatureSum" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="RefCropStage" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReferencedCountryType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="udt:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpecifiedCommunicationType">
+		<xsd:sequence>
+			<xsd:element name="URI" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="CompleteNumber" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpecifiedPartyType">
+		<xsd:sequence>
+			<xsd:element name="ID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identificatie van een persoon of organisatie.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="udt:TextType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Naam van de persoon of organisatie.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Country" type="udt:CodeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Land van vestiging</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PostalAddress" type="crpr:StructuredAddressType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Postadres.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VisitorsAddress" type="crpr:StructuredAddressType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Bezoekadres.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PartyContact" type="crpr:PartyContactType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Informatie betreffende de contactpersoon.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Website" type="crpr:SpecifiedCommunicationType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Verwijzing naar de website (URL).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StructuredAddressType">
+		<xsd:sequence>
+			<xsd:element name="ID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="PostcodeCode" type="udt:CodeType"/>
+			<xsd:element name="BuildingName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="StreetName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CityName" type="udt:TextType"/>
+			<xsd:element name="Country" type="qdt:CountryIDType"/>
+			<xsd:element name="CountryName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PostOfficeBox" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpecifiedClassificationType">
+		<xsd:sequence>
+			<xsd:element name="ClassCode" type="udt:CodeType" minOccurs="0"/>
+			<xsd:element name="ClassName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CountryID" type="udt:IDType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TreatmentCharacteristicType">
+		<xsd:sequence>
+			<xsd:element name="TreatmentCharacteristicCode" type="udt:CodeType">
+				<xsd:annotation>
+					<xsd:documentation>Code van de eigenschap van de bewerking.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TreatmentCharacteristicValue" type="udt:TextType">
+				<xsd:annotation>
+					<xsd:documentation>Waarde van de eigenschap van de bewerking.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TreatmentZoneType">
+		<xsd:sequence>
+			<xsd:element name="TreatmentZoneID" type="udt:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Unieke identificatie van een TreatmentZones (behandelstrook).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ThirdPartyTreatmentZoneID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Extra unieke identificatie van een TreatmentZones (behandelstrook).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TreatmentCharacteristic" type="crpr:TreatmentCharacteristicType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Aanvullende specificatie van de uit te voeren of de uitgevoerde bewerking.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SoilObservation" type="crpr:ObservationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Bodemwaarneming.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Oppervlakte van de behandelstrook.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Omtrek van de behandelstrook.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductAllocation" type="crpr:ProductAllocationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Aanwending van een hulpstof (meststof, gewasbeschermingsmiddel, etc.)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
