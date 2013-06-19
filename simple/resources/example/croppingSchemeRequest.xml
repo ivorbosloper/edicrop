@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:getCroppingSchemeRequest>
+         <xsd:Authenticationtoken>user|#|password</xsd:Authenticationtoken>
+         <xsd:MessageId>123456</xsd:MessageId>
+         <xsd:FarmID>1</xsd:FarmID>
+      </xsd:getCroppingSchemeRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
