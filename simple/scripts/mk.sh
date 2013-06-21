@@ -16,6 +16,6 @@ wsdl2java -b resources/bind.xml -d $TARGET -p nl.agroconnect.wsEdiCrop.v4_0 \
   resources/WSDL_WS-EDI-Crop.wsdl
 
 # brew install recode, or apt-get install recode
-#find $TARGET -name "*.java" -exec recode Latin-1..UTF-8 {} \;
-#find src $TARGET -name "*.java" |xargs javac -d bin/ 
+find $TARGET -name "*.java" -exec recode Latin-1..UTF-8 {} \;
+find src $TARGET -name "*.java" |xargs javac -d bin/ 
 

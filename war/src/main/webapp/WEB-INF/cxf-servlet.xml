@@ -13,9 +13,9 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
 
     <jaxws:endpoint 
-        id="doubleit"
-        implementor="service.DoubleItPortTypeImpl"
-        wsdlLocation="WEB-INF/wsdl/DoubleIt.wsdl"
-        address="/doubleit">
+        id="agroconnect"
+        implementor="service.EdiPortTypeImpl"
+        wsdlLocation="WEB-INF/wsdl/WSDL_WS-EDI-Crop_v4_0.wsdl"
+        address="/edicrop">
     </jaxws:endpoint>
 </beans>

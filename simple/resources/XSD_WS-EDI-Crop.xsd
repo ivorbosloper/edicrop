@@ -3,22 +3,13 @@
 <!--AgroConnect-->
 <!--XSD's voor de webservice EDI-Crop v4.0-->
 <!--30mei13: eerste versie aangemaakt door Conny Graumans, Willem Dantuma en Ivor Bosloper-->
-<xsd:schema xmlns:wsc="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" 
-	xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" 
-	xmlns:crpr="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" 
-	xmlns:crpa="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" 
-	xmlns:crps="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" 
-	xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" 
-	xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" 
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" 
-	elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns:wsc="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:crpr="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" xmlns:crpa="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" xmlns:crps="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="http://www.unece.org/uncefact/data/standard/UnqualifiedDataType_10p0.xsd"/>
 	<xsd:import namespace="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" schemaLocation="http://www.unece.org/uncefact/data/standard/QualifiedDataType_9p0.xsd"/>
 	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0.xsd"/>
 	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0.xsd"/>
 	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0.xsd"/>
-	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" schemaLocation="EDI-Crop-CroppingScheme_v4_0.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0.xsd"/>
 	<xsd:element name="getCroppingSchemeListRequest">
 		<xsd:complexType>
 			<xsd:sequence>

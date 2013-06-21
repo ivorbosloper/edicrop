@@ -2,8 +2,6 @@ package nl.agroconnect;
 
 import javax.xml.ws.Endpoint;
 
-import nl.agroconnect.wsEdiCrop.v4_0.EdiPortTypeImpl;
- 
 public class CropServer{
 
     protected CropServer() throws java.lang.Exception {

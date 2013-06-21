@@ -2,6 +2,10 @@
                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                jaxb:version="2.0">
   <jaxb:bindings >
-      <jaxb:globalBindings typesafeEnumMaxMembers="2000"/>
+      <jaxb:globalBindings typesafeEnumMaxMembers="2000">
+	      <jaxb:javaType name="java.util.Date" xmlType="xsd:dateTime" 
+	                    parseMethod="org.apache.cxf.tools.common.DataTypeAdapter.parseDateTime" 
+	                    printMethod="org.apache.cxf.tools.common.DataTypeAdapter.printDateTime"/>
+	  </jaxb:globalBindings> 
     </jaxb:bindings>
  </jaxb:bindings>

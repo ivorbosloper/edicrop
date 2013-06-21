@@ -87,6 +87,7 @@
 						   <defaultOptions>
 						      <extraargs>
 						        <extraarg>-xjc-Xvalue-constructor</extraarg>
+			                    <extraarg>-xjc-Xfluent-api</extraarg>
 						      </extraargs>
 						   </defaultOptions>
                            <wsdlOptions>
@@ -117,6 +118,11 @@
 				      <artifactId>jaxb2-basics</artifactId>
 				      <version>0.6.4</version>
 				    </dependency>
+					<dependency>
+		                <groupId>net.java.dev.jaxb2-commons</groupId>
+		                <artifactId>jaxb-fluent-api</artifactId>
+		                <version>2.1.8</version>
+					</dependency>				    
 				  </dependencies>						   
                </plugin>
             </plugins>
