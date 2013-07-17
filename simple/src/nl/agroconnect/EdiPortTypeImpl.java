@@ -44,9 +44,9 @@ public class EdiPortTypeImpl implements EdiPortType {
     private static final Logger LOG = Logger.getLogger(EdiPortTypeImpl.class.getName());
 
     public GetCroppingSchemeListResponse getCroppingSchemeList(GetCroppingSchemeListRequest payload) {
-	List<IDType> farms = new ArrayList<IDType>();
-	farms.add(id("1"));
-	return new GetCroppingSchemeListResponse(0, payload.getMessageId(), farms);
+		List<IDType> farms = new ArrayList<IDType>();
+		farms.add(id("1"));
+		return new GetCroppingSchemeListResponse(0, payload.getMessageId(), new BigDecimal(2013), farms);
     }
 
     public GetCroppingSchemeResponse getCroppingScheme(GetCroppingSchemeRequest payload) { 
@@ -71,7 +71,7 @@ public class EdiPortTypeImpl implements EdiPortType {
     	Data.addFieldsTo(farm.getField());
 
     	CroppingSchemeMessageType msg = new CroppingSchemeMessageType(doc, farm);
-    	return new GetCroppingSchemeResponse(0, payload.getMessageId(), msg);
+    	return new GetCroppingSchemeResponse(0, payload.getMessageId(), new BigDecimal(2013), msg);
     }
 	
     public GetCropRecordingListResponse getCropRecordingList(GetCropRecordingListRequest payload) { 

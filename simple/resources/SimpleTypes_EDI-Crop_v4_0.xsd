@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Conny Graumans (EDI Agro Vereniging) -->
 <!-- 12apr12, CG: eerste versie Domains.xsd voor EDI-Teelt v4.0 opgeleverd -->
+<!-- 15jul13, CG:  MessageTypeType enumeration CRPREC toegevoegd-->
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:simpleType name="EdiCropVersionType">
 		<xsd:restriction base="xsd:string">
@@ -114,6 +115,7 @@
 			<xsd:maxLength value="6"/>
 			<xsd:enumeration value="CRPADV"/>
 			<xsd:enumeration value="CRPSCH"/>
+			<xsd:enumeration value="CRPREC"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="MessageTypeVersionType">

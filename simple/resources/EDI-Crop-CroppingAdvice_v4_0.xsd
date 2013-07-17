@@ -7,15 +7,13 @@
 <!-- 121220, CG: onder "ProductAllocation" "ThirdPartyAllocationID", "BatchThirdPartyID" en "Area" toegevoegd-->
 <!-- 121221, CG: onder "CropField" voor "Operation" "minOccurs="0" toegevoegd-->
 <!-- 130520, CG: Polygon is Border geworden-->
-<!-- 130530, CG: crop: verandert in crpa:-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-	xmlns:crpa="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" 
-	xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" 
-	xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:9" 
-	targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
+<!-- 130530, CG: crpa: verandert in crpa:-->
+<!-- 130708, CG: qdt en ram verwijzingen verwijderd ivm out of memory inlezen wsdl's-->
+<!-- 130715, CG: crpa.QuantityType vervangen door crpa.ANLQuantityType-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crpa="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:ccts="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
 	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="http://www.unece.org/uncefact/data/standard/UnqualifiedDataType_10p0.xsd"/>
-	<xsd:import namespace="urn:un:unece:uncefact:data:standard:QualifiedDataType:9" schemaLocation="http://www.unece.org/uncefact/data/standard/QualifiedDataType_9p0.xsd"/>
 	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0.xsd"/>
+	<xsd:import namespace="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" schemaLocation="http://www.unece.org/uncefact/identifierlist/standard/ISO_ISOTwoletterCountryCode_SecondEdition2006VI-8.xsd"/>
 	<xsd:element name="CroppingAdviceMessage" type="crpa:CroppingAdviceMessageType"/>
 	<xsd:complexType name="AbstractRingPropertyType">
 		<xsd:sequence>
@@ -67,8 +65,7 @@
 			<xsd:element name="ThirdPartyCropFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="BeginDate" type="udt:DateTimeType"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
-			<xsd:element name="Country" type="udt:CodeType"/>
-			<xsd:element name="GLN" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="Country" type="ccts:ISOTwoletterCountryCodeIdentifierContentType"/>
 			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
 			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType"/>
 			<xsd:element name="CropTypeCode" type="udt:CodeType"/>
@@ -76,7 +73,6 @@
 			<xsd:element name="ProductionTypeCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="CropProductionPurposeCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="CropProductionSequence" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="CropProductionPeriodCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="PrecedingCropField" type="crpa:PrecedingCropFieldType" minOccurs="0"/>
 			<xsd:element name="Border" type="crpa:PolygonType" minOccurs="0"/>
 			<xsd:element name="NutrientBalanceCrop" type="crpa:NutrientBalanceCropType" minOccurs="0"/>
@@ -245,34 +241,36 @@
 			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="ProductAllocationType">
+	<xsd:complexType name="AllocationType">
 		<xsd:sequence>
-			<xsd:element name="ProductAllocationID" type="udt:IDType"/>
+			<xsd:element name="AllocationID" type="udt:IDType"/>
 			<xsd:element name="ThirdPartyAllocationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="AllocationType" type="udt:CodeType"/>
 			<xsd:element name="ProductCode" type="udt:CodeType"/>
-			<xsd:element name="Quantity" type="crpa:QuantityType"/>
+			<xsd:element name="Quantity" type="crpa:ANLQuantityType"/>
 			<xsd:element name="BatchID" type="udt:IDType" minOccurs="0"/>
 			<xsd:element name="BatchThirdPartyID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="ProductTypeType">
-		<xsd:sequence>
-			<xsd:element name="ProductTypeIDRef" type="udt:IDType" minOccurs="0"/>
-			<xsd:element name="ProductTypeName" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="RegulatoryWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
-			<xsd:element name="AgronomicWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
-			<xsd:element name="Quantity" type="crpa:QuantityType" minOccurs="0"/>
-			<xsd:element name="AmountPerAreaUnit" type="crpa:QuantityType" minOccurs="0"/>
-			<xsd:element name="Composition" type="crpa:CompositionType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="QuantityType">
+	<xsd:complexType name="ANLQuantityType">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
 				<xsd:attribute name="unitCode" type="cdt:unitCodeType"/>
 			</xsd:extension>
 		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductTypeType">
+		<xsd:sequence>
+			<xsd:element name="AllocationType" type="udt:CodeType"/>
+			<xsd:element name="ProductTypeIDRef" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="ProductTypeName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="RegulatoryWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
+			<xsd:element name="AgronomicWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
+			<xsd:element name="Quantity" type="crpa:ANLQuantityType" minOccurs="0"/>
+			<xsd:element name="AmountPerAreaUnit" type="crpa:ANLQuantityType" minOccurs="0"/>
+			<xsd:element name="Composition" type="crpa:CompositionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="ReferencedCountryType">
 		<xsd:sequence>
@@ -293,7 +291,7 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="udt:IDType"/>
 			<xsd:element name="Name" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="Country" type="udt:CodeType" minOccurs="0"/>
+			<xsd:element name="Country" type="ccts:ISOTwoletterCountryCodeIdentifierContentType" minOccurs="0"/>
 			<xsd:element name="PostalAddress" type="crpa:StructuredAddressType" minOccurs="0"/>
 			<xsd:element name="VisitorsAddress" type="crpa:StructuredAddressType" minOccurs="0"/>
 			<xsd:element name="PartyContact" type="crpa:PartyContactType" minOccurs="0"/>
@@ -313,7 +311,7 @@
 			<xsd:element name="BuildingName" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="StreetName" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="CityName" type="udt:TextType"/>
-			<xsd:element name="Country" type="qdt:CountryIDType"/>
+			<xsd:element name="Country" type="ccts:ISOTwoletterCountryCodeIdentifierContentType"/>
 			<xsd:element name="CountryName" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="PostOfficeBox" type="udt:TextType" minOccurs="0"/>
 		</xsd:sequence>
@@ -322,7 +320,7 @@
 		<xsd:sequence>
 			<xsd:element name="ClassCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="ClassName" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="CountryID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="CountryID" type="ccts:ISOTwoletterCountryCodeIdentifierContentType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="TreatmentZoneType">
@@ -331,7 +329,7 @@
 			<xsd:element name="ThirdPartyTreatmentZoneID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0"/>
 			<xsd:element name="Border" type="crpa:PolygonType" minOccurs="0"/>
-			<xsd:element name="ProductAllocation" type="crpa:ProductAllocationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductAllocation" type="crpa:AllocationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 </xsd:schema>
