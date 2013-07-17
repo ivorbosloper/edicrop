@@ -12,40 +12,77 @@
 	</xsd:annotation>
 	<types>
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
-			<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" schemaLocation="XSD_WS-EDI-Crop.xsd"/>
+			<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop.xsd"/>
 		</schema>
 	</types>
-
+	<message name="getCroppingSchemeListRequestMsg"><part name="payload" element="wsdltypes:getCroppingSchemeListRequest"/></message>
+	<message name="getCroppingSchemeListResponseMsg"><part name="payload" element="wsdltypes:getCroppingSchemeListResponse"/></message>
 	<message name="getCroppingSchemeRequestMsg"><part name="payload" element="wsdltypes:getCroppingSchemeRequest"/></message>
 	<message name="getCroppingSchemeResponseMsg"><part name="payload" element="wsdltypes:getCroppingSchemeResponse"/></message>
+	<message name="getCropRecordingListRequestMsg"><part name="payload" element="wsdltypes:getCropRecordingListRequest"/></message>
+	<message name="getCropRecordingListResponseMsg"><part name="payload" element="wsdltypes:getCropRecordingListResponse"/></message>
 	<message name="getCropRecordingRequestMsg"><part name="payload" element="wsdltypes:getCropRecordingRequest"/></message>
 	<message name="getCropRecordingResponseMsg"><part name="payload" element="wsdltypes:getCropRecordingResponse"/></message>
+	<message name="putCroppingAdviceRequestMsg"><part name="payload" element="wsdltypes:putCroppingAdviceRequest"/></message>
+	<message name="putCroppingAdviceResponseMsg"><part name="payload" element="wsdltypes:putCroppingAdviceResponse"/></message>
+	<message name="putCropRecordingRequestMsg"><part name="payload" element="wsdltypes:putCropRecordingRequest"/></message>
+	<message name="putCropRecordingResponseMsg"><part name="payload" element="wsdltypes:putCropRecordingResponse"/></message>
 
 	<portType name="EdiPortType">
+		<operation name="getCroppingSchemeList">
+			<input message="tns:getCroppingSchemeListRequestMsg"/>
+			<output message="tns:getCroppingSchemeListResponseMsg"/>
+		</operation>
 		<operation name="getCroppingScheme">
 			<input message="tns:getCroppingSchemeRequestMsg"/>
 			<output message="tns:getCroppingSchemeResponseMsg"/>
+		</operation>
+		<operation name="getCropRecordingList">
+			<input message="tns:getCropRecordingListRequestMsg"/>
+			<output message="tns:getCropRecordingListResponseMsg"/>
 		</operation>
 		<operation name="getCropRecording">
 			<input message="tns:getCropRecordingRequestMsg"/>
 			<output message="tns:getCropRecordingResponseMsg"/>
 		</operation>
-		<!--  
-		<operation name="putCroppingScheme">
-			<input message="tns:putCroppingSchemeRequestMsg"/>
-			<output message="tns:putCroppingSchemeResponseMsg"/>
+		<operation name="putCroppingAdvice">
+			<input message="tns:putCroppingAdviceRequestMsg"/>
+			<output message="tns:putCroppingAdviceResponseMsg"/>
 		</operation>
-		-->
+		<operation name="putCropRecording">
+			<input message="tns:putCropRecordingRequestMsg"/>
+			<output message="tns:putCropRecordingResponseMsg"/>
+		</operation>
 	</portType>
 	<binding name="EdiSoapBinding" type="tns:EdiPortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getCroppingSchemeList">
+			<soap:operation style="document" soapAction="getCroppingSchemeList"/>
+			<input><soap:body use="literal" parts="payload"/></input>
+			<output><soap:body use="literal"/></output>
+		</operation>
 		<operation name="getCroppingScheme">
 			<soap:operation style="document" soapAction="getCroppingScheme"/>
 			<input><soap:body use="literal" parts="payload"/></input>
 			<output><soap:body use="literal"/></output>
 		</operation>
+		<operation name="getCropRecordingList">
+			<soap:operation style="document" soapAction="getCropRecordingList"/>
+			<input><soap:body use="literal" parts="payload"/></input>
+			<output><soap:body use="literal"/></output>
+		</operation>
 		<operation name="getCropRecording">
 			<soap:operation style="document" soapAction="getCropRecording"/>
+			<input><soap:body use="literal" parts="payload"/></input>
+			<output><soap:body use="literal"/></output>
+		</operation>
+		<operation name="putCroppingAdvice">
+			<soap:operation style="document" soapAction="putCroppingAdvice"/>
+			<input><soap:body use="literal" parts="payload"/></input>
+			<output><soap:body use="literal"/></output>
+		</operation>
+		<operation name="putCropRecording">
+			<soap:operation style="document" soapAction="putCropRecording"/>
 			<input><soap:body use="literal" parts="payload"/></input>
 			<output><soap:body use="literal"/></output>
 		</operation>

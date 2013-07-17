@@ -20,6 +20,12 @@
          <version>4.11</version>
          <scope>test</scope>
       </dependency>
+		<dependency>
+               <groupId>org.apache.cxf</groupId>
+               <artifactId>cxf-tools-common</artifactId>
+               <version>2.7.5</version>
+		</dependency>				    
+      
    </dependencies>
 
    <build>
@@ -86,8 +92,12 @@
                            </sourceRoot>
 						   <defaultOptions>
 						      <extraargs>
+			                    <extraarg>-p</extraarg><extraarg>nl.agroconnect.wsEdiCrop.v4_0</extraarg>
 						        <extraarg>-xjc-Xvalue-constructor</extraarg>
 			                    <extraarg>-xjc-Xfluent-api</extraarg>
+			                    <extraarg>-p</extraarg><extraarg>http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0=nl.agroconnect.wsEdiCrop.v4_0.crpa</extraarg>
+								<extraarg>-p</extraarg><extraarg>http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0=nl.agroconnect.wsEdiCrop.v4_0.crpr</extraarg>
+								<extraarg>-p</extraarg><extraarg>http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0=nl.agroconnect.wsEdiCrop.v4_0.crps</extraarg>
 						      </extraargs>
 						   </defaultOptions>
                            <wsdlOptions>
@@ -122,7 +132,7 @@
 		                <groupId>net.java.dev.jaxb2-commons</groupId>
 		                <artifactId>jaxb-fluent-api</artifactId>
 		                <version>2.1.8</version>
-					</dependency>				    
+					</dependency>
 				  </dependencies>						   
                </plugin>
             </plugins>
