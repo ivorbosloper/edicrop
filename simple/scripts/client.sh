@@ -17,3 +17,10 @@ cat resources/example/croppingSchemeRequest.xml
 cat resources/example/croppingSchemeRequest.xml | curl -D - -o resources/example/croppingSchemeResponse.xml -X POST -H 'Content-type: text/xml' -H 'SOAPAction: "getCroppingScheme"' -d "@-" $endpoint
 echo received:
 cat resources/example/croppingSchemeResponse.xml
+
+echo
+echo sending resources/example/cropRecordingRequest.xml...
+cat resources/example/cropRecordingRequest.xml
+cat resources/example/cropRecordingRequest.xml | curl -D - -o resources/example/cropRecordingResponse.xml -X POST -H 'Content-type: text/xml' -H 'SOAPAction: "getCropRecording"' -d "@-" $endpoint
+echo received:
+cat resources/example/cropRecordingRequest.xml

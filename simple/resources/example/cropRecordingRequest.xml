@@ -9,9 +9,10 @@
 		</wsse:Security>
 	</soapenv:Header>
 	<soapenv:Body>
-		<xsd:getCroppingSchemeRequest>
+		<xsd:getCropRecordingRequest>
 			<xsd:MessageId>123456</xsd:MessageId>
+			<xsd:CropYear>2013</xsd:CropYear>
 			<xsd:FarmID>1</xsd:FarmID>
-		</xsd:getCroppingSchemeRequest>
+		</xsd:getCropRecordingRequest>
 	</soapenv:Body>
 </soapenv:Envelope>

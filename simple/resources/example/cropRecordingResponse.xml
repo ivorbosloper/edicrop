@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
 	<S:Body>
-		<ns3:getCroppingSchemeResponse
+		<ns3:getCropRecordingResponse
 			xmlns="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" xmlns:ns2="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0"
 			xmlns:ns3="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" xmlns:ns4="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0"
 			xmlns:ns5="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" xmlns:ns6="urn:un:unece:uncefact:codelist:standard:6:3055:D10A"
@@ -11,83 +11,76 @@
 			<ns3:Status>0</ns3:Status>
 			<ns3:MessageId>123456</ns3:MessageId>
 			<ns3:CropYear>2013</ns3:CropYear>
-			<ns3:CroppingSchemeMessage>
-				<ns5:ExchangedDocument>
-					<ns5:ID>1_123456</ns5:ID>
-					<ns5:Type>CRPSCH</ns5:Type>
-					<ns5:EdiCropVersion>CRP4.0</ns5:EdiCropVersion>
-					<ns5:MessageTypeVersion>4.0</ns5:MessageTypeVersion>
-					<ns5:IssueDate>2013-11-07T17:01:45.844+01:00</ns5:IssueDate>
-					<ns5:CropYear>2013</ns5:CropYear>
-					<ns5:ReportCount>0</ns5:ReportCount>
-					<ns5:Description languageID="NL">Voorbeeld CroppingScheme bericht voor testboerderij</ns5:Description>
-					<ns5:Issuer>
-						<ns5:ID>1</ns5:ID>
-						<ns5:Name languageID="NL">Demo Farm</ns5:Name>
-						<ns5:Country>NL</ns5:Country>
-						<ns5:PostalAddress>
-							<ns5:PostcodeCode>9981VD</ns5:PostcodeCode>
-							<ns5:StreetName languageID="NL">Valom</ns5:StreetName>
-							<ns5:CityName languageID="NL">Uithuizen</ns5:CityName>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:CountryName languageID="NL">Nederland</ns5:CountryName>
-						</ns5:PostalAddress>
-					</ns5:Issuer>
-					<ns5:Sender>
-						<ns5:ID>CROPR</ns5:ID>
-						<ns5:Name languageID="NL">Crop-R</ns5:Name>
-						<ns5:Country>NL</ns5:Country>
-						<ns5:PostalAddress>
-							<ns5:PostcodeCode>9723ZA</ns5:PostcodeCode>
-							<ns5:StreetName languageID="NL">Helperpark 304</ns5:StreetName>
-							<ns5:CityName languageID="NL">Groningen</ns5:CityName>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:CountryName languageID="NL">Nederland</ns5:CountryName>
-						</ns5:PostalAddress>
-					</ns5:Sender>
-					<ns5:Receiver>
-						<ns5:ID>AGROCONNECT</ns5:ID>
-						<ns5:Name languageID="NL">Agroconnect test lab</ns5:Name>
-						<ns5:Country>NL</ns5:Country>
-						<ns5:PostalAddress>
-							<ns5:PostcodeCode>6708PB</ns5:PostcodeCode>
-							<ns5:BuildingName languageID="NL">WUR-gebouwnr. 102</ns5:BuildingName>
-							<ns5:StreetName languageID="NL">Droevendaalsesteeg 2</ns5:StreetName>
-							<ns5:CityName languageID="NL">Wageningen</ns5:CityName>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:CountryName languageID="NL">Nederland</ns5:CountryName>
-						</ns5:PostalAddress>
-					</ns5:Receiver>
-				</ns5:ExchangedDocument>
-				<ns5:Farm>
-					<ns5:FarmContact>
-						<ns5:ID>1</ns5:ID>
-						<ns5:Name languageID="NL">Demo Farm</ns5:Name>
-						<ns5:Country>NL</ns5:Country>
-						<ns5:PostalAddress>
-							<ns5:PostcodeCode>9981VD</ns5:PostcodeCode>
-							<ns5:StreetName languageID="NL">Valom</ns5:StreetName>
-							<ns5:CityName languageID="NL">Uithuizen</ns5:CityName>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:CountryName languageID="NL">Nederland</ns5:CountryName>
-						</ns5:PostalAddress>
-					</ns5:FarmContact>
-					<ns5:ThirdPartyFarmID schemeAgencyName="DACOM">1</ns5:ThirdPartyFarmID>
-					<ns5:FarmClassification>
-						<ns5:ClassificationCode>1</ns5:ClassificationCode>
-						<ns5:ClassificationIndicator>N</ns5:ClassificationIndicator>
-					</ns5:FarmClassification>
-					<ns5:Field>
-						<ns5:FieldID>AGRONL12345777FDCROPR2013TRW2125</ns5:FieldID>
-						<ns5:FieldDesignator>Huis</ns5:FieldDesignator>
-						<ns5:ThirdPartyFieldID schemeName="AAN" schemeAgencyName="MINLNV">1120801</ns5:ThirdPartyFieldID>
-						<ns5:BeginDate>2012-01-01T00:00:00+01:00</ns5:BeginDate>
-						<ns5:EndDate>9999-12-31T00:00:00+01:00</ns5:EndDate>
-						<ns5:Area unitCode="ha">15.5146</ns5:Area>
-						<ns5:SamplingProtocol languageID="NL">Spurway</ns5:SamplingProtocol>
-						<ns5:Pal languageID="NL">26</ns5:Pal>
-						<ns5:Pw languageID="NL">16</ns5:Pw>
-						<ns5:Border>
+			<ns3:CropRecordingMessage>
+				<ns4:ExchangedDocument>
+					<ns4:ID>1_123456</ns4:ID>
+					<ns4:Type>CRPSCH</ns4:Type>
+					<ns4:EdiCropVersion>CRP4.0</ns4:EdiCropVersion>
+					<ns4:MessageTypeVersion>4.0</ns4:MessageTypeVersion>
+					<ns4:IssueDate>2013-11-07T17:01:45.884+01:00</ns4:IssueDate>
+					<ns4:CropYear>2013</ns4:CropYear>
+					<ns4:ReportCount>0</ns4:ReportCount>
+					<ns4:Description languageID="NL">Voorbeeld CroppingScheme bericht voor testboerderij</ns4:Description>
+					<ns4:Issuer>
+						<ns4:ID>1</ns4:ID>
+						<ns4:Name languageID="NL">Demo Farm</ns4:Name>
+						<ns4:Country>NL</ns4:Country>
+						<ns4:PostalAddress>
+							<ns4:PostcodeCode>9981VD</ns4:PostcodeCode>
+							<ns4:StreetName languageID="NL">Valom</ns4:StreetName>
+							<ns4:CityName languageID="NL">Uithuizen</ns4:CityName>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:CountryName languageID="NL">Nederland</ns4:CountryName>
+						</ns4:PostalAddress>
+					</ns4:Issuer>
+					<ns4:Sender>
+						<ns4:ID>CROPR</ns4:ID>
+						<ns4:Name languageID="NL">Crop-R</ns4:Name>
+						<ns4:Country>NL</ns4:Country>
+						<ns4:PostalAddress>
+							<ns4:PostcodeCode>9723ZA</ns4:PostcodeCode>
+							<ns4:StreetName languageID="NL">Helperpark 304</ns4:StreetName>
+							<ns4:CityName languageID="NL">Groningen</ns4:CityName>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:CountryName languageID="NL">Nederland</ns4:CountryName>
+						</ns4:PostalAddress>
+					</ns4:Sender>
+					<ns4:Receiver>
+						<ns4:ID>AGROCONNECT</ns4:ID>
+						<ns4:Name languageID="NL">Agroconnect test lab</ns4:Name>
+						<ns4:Country>NL</ns4:Country>
+						<ns4:PostalAddress>
+							<ns4:PostcodeCode>6708PB</ns4:PostcodeCode>
+							<ns4:BuildingName languageID="NL">WUR-gebouwnr. 102</ns4:BuildingName>
+							<ns4:StreetName languageID="NL">Droevendaalsesteeg 2</ns4:StreetName>
+							<ns4:CityName languageID="NL">Wageningen</ns4:CityName>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:CountryName languageID="NL">Nederland</ns4:CountryName>
+						</ns4:PostalAddress>
+					</ns4:Receiver>
+				</ns4:ExchangedDocument>
+				<ns4:Farm>
+					<ns4:FarmContact>
+						<ns4:ID>1</ns4:ID>
+						<ns4:Name languageID="NL">Demo Farm</ns4:Name>
+						<ns4:Country>NL</ns4:Country>
+						<ns4:PostalAddress>
+							<ns4:PostcodeCode>9981VD</ns4:PostcodeCode>
+							<ns4:StreetName languageID="NL">Valom</ns4:StreetName>
+							<ns4:CityName languageID="NL">Uithuizen</ns4:CityName>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:CountryName languageID="NL">Nederland</ns4:CountryName>
+						</ns4:PostalAddress>
+					</ns4:FarmContact>
+					<ns4:ThirdPartyFarmID schemeAgencyName="DACOM">1</ns4:ThirdPartyFarmID>
+					<ns4:Field>
+						<ns4:FieldID>AGRONL12345777FDCROPR2013TRW2125</ns4:FieldID>
+						<ns4:FieldDesignator>Huis</ns4:FieldDesignator>
+						<ns4:ThirdPartyFieldID schemeName="AAN" schemeAgencyName="MINLNV">1120801</ns4:ThirdPartyFieldID>
+						<ns4:BeginDate>2012-01-01T00:00:00+01:00</ns4:BeginDate>
+						<ns4:EndDate>9999-12-31T00:00:00+01:00</ns4:EndDate>
+						<ns4:Area unitCode="ha">15.5146</ns4:Area>
+						<ns4:Border>
 							<ns2:exterior>
 								<ns2:LinearRing>
 									<ns2:posList srsName="EPSG:4326">6.8904382400000062 53.2440660299999422 6.8903267000000268 53.2449043999998679
@@ -121,19 +114,19 @@
 										53.2440660299999422</ns2:posList>
 								</ns2:LinearRing>
 							</ns2:exterior>
-						</ns5:Border>
-						<ns5:CropField>
-							<ns5:CropFieldID>AGRONL12345777CFDCROPR2013TRW671</ns5:CropFieldID>
-							<ns5:CropFieldDesignator>Oostwoldjerweg</ns5:CropFieldDesignator>
-							<ns5:BeginDate>2013-01-01T00:00:00+01:00</ns5:BeginDate>
-							<ns5:EndDate>2013-12-31T00:00:00+01:00</ns5:EndDate>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:Area unitCode="ha">15.5146</ns5:Area>
-							<ns5:RegulatorySoiltypeCode listID="CL021">KZ</ns5:RegulatorySoiltypeCode>
-							<ns5:CropTypeCode listID="CL263">1020107</ns5:CropTypeCode>
-							<ns5:VarietyCode listID="CL232">14407</ns5:VarietyCode>
-							<ns5:CropProductionPurposeCode listID="CL251">102</ns5:CropProductionPurposeCode>
-							<ns5:Border>
+						</ns4:Border>
+						<ns4:CropField>
+							<ns4:CropFieldID>AGRONL12345777CFDCROPR2013TRW671</ns4:CropFieldID>
+							<ns4:CropFieldDesignator>Oostwoldjerweg</ns4:CropFieldDesignator>
+							<ns4:BeginDate>2013-01-01T00:00:00+01:00</ns4:BeginDate>
+							<ns4:EndDate>2013-12-31T00:00:00+01:00</ns4:EndDate>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:Area unitCode="ha">15.5146</ns4:Area>
+							<ns4:RegulatorySoiltypeCode listID="CL021">KZ</ns4:RegulatorySoiltypeCode>
+							<ns4:CropTypeCode listID="CL263">1020107</ns4:CropTypeCode>
+							<ns4:VarietyCode listID="CL232">14407</ns4:VarietyCode>
+							<ns4:CropProductionPurposeCode listID="CL251">102</ns4:CropProductionPurposeCode>
+							<ns4:Border>
 								<ns2:exterior>
 									<ns2:LinearRing>
 										<ns2:posList srsName="EPSG:4326">6.8903147161777039 53.2450738337575444 6.8903492698400530 53.2451531605323538
@@ -155,20 +148,20 @@
 											53.2447707548643407 6.8903147161777039 53.2450738337575444</ns2:posList>
 									</ns2:LinearRing>
 								</ns2:exterior>
-							</ns5:Border>
-						</ns5:CropField>
-						<ns5:CropField>
-							<ns5:CropFieldID>AGRONL12345777CFDCROPR2013TRW672</ns5:CropFieldID>
-							<ns5:CropFieldDesignator>Oostwoldjerweg2</ns5:CropFieldDesignator>
-							<ns5:BeginDate>2013-01-01T00:00:00+01:00</ns5:BeginDate>
-							<ns5:EndDate>2013-12-31T00:00:00+01:00</ns5:EndDate>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:Area unitCode="ha">15.5146</ns5:Area>
-							<ns5:RegulatorySoiltypeCode listID="CL021">KZ</ns5:RegulatorySoiltypeCode>
-							<ns5:CropTypeCode listID="CL263">1010101</ns5:CropTypeCode>
-							<ns5:VarietyCode listID="CL232">10121</ns5:VarietyCode>
-							<ns5:CropProductionPurposeCode listID="CL251">001</ns5:CropProductionPurposeCode>
-							<ns5:Border>
+							</ns4:Border>
+						</ns4:CropField>
+						<ns4:CropField>
+							<ns4:CropFieldID>AGRONL12345777CFDCROPR2013TRW672</ns4:CropFieldID>
+							<ns4:CropFieldDesignator>Oostwoldjerweg2</ns4:CropFieldDesignator>
+							<ns4:BeginDate>2013-01-01T00:00:00+01:00</ns4:BeginDate>
+							<ns4:EndDate>2013-12-31T00:00:00+01:00</ns4:EndDate>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:Area unitCode="ha">15.5146</ns4:Area>
+							<ns4:RegulatorySoiltypeCode listID="CL021">KZ</ns4:RegulatorySoiltypeCode>
+							<ns4:CropTypeCode listID="CL263">1010101</ns4:CropTypeCode>
+							<ns4:VarietyCode listID="CL232">10121</ns4:VarietyCode>
+							<ns4:CropProductionPurposeCode listID="CL251">001</ns4:CropProductionPurposeCode>
+							<ns4:Border>
 								<ns2:exterior>
 									<ns2:LinearRing>
 										<ns2:posList srsName="EPSG:4326">6.8903147161777039 53.2450738337575444 6.8903492698400530 53.2451531605323538
@@ -190,17 +183,17 @@
 											53.2447707548643407 6.8903147161777039 53.2450738337575444</ns2:posList>
 									</ns2:LinearRing>
 								</ns2:exterior>
-							</ns5:Border>
-						</ns5:CropField>
-					</ns5:Field>
-					<ns5:Field>
-						<ns5:FieldID>AGRONL12345777FDCROPR2013TRW2126</ns5:FieldID>
-						<ns5:FieldDesignator>Huis2</ns5:FieldDesignator>
-						<ns5:ThirdPartyFieldID schemeName="AAN" schemeAgencyName="MINLNV">1349154</ns5:ThirdPartyFieldID>
-						<ns5:BeginDate>2012-01-01T00:00:00+01:00</ns5:BeginDate>
-						<ns5:EndDate>9999-12-31T00:00:00+01:00</ns5:EndDate>
-						<ns5:Area unitCode="ha">15.5146</ns5:Area>
-						<ns5:Border>
+							</ns4:Border>
+						</ns4:CropField>
+					</ns4:Field>
+					<ns4:Field>
+						<ns4:FieldID>AGRONL12345777FDCROPR2013TRW2126</ns4:FieldID>
+						<ns4:FieldDesignator>Huis2</ns4:FieldDesignator>
+						<ns4:ThirdPartyFieldID schemeName="AAN" schemeAgencyName="MINLNV">1349154</ns4:ThirdPartyFieldID>
+						<ns4:BeginDate>2012-01-01T00:00:00+01:00</ns4:BeginDate>
+						<ns4:EndDate>9999-12-31T00:00:00+01:00</ns4:EndDate>
+						<ns4:Area unitCode="ha">15.5146</ns4:Area>
+						<ns4:Border>
 							<ns2:exterior>
 								<ns2:LinearRing>
 									<ns2:posList srsName="EPSG:4326">6.8990278099997004 53.2443399200000371 6.8997304799992127 53.2441628100001410
@@ -209,19 +202,19 @@
 										6.8976554100004090 53.2447120899989130 6.8990278099997004 53.2443399200000371</ns2:posList>
 								</ns2:LinearRing>
 							</ns2:exterior>
-						</ns5:Border>
-						<ns5:CropField>
-							<ns5:CropFieldID>AGRONL12345777CFDCROPR2013TRW674</ns5:CropFieldID>
-							<ns5:CropFieldDesignator>Oostwoldjerweg3</ns5:CropFieldDesignator>
-							<ns5:BeginDate>2013-01-01T00:00:00+01:00</ns5:BeginDate>
-							<ns5:EndDate>2013-12-31T00:00:00+01:00</ns5:EndDate>
-							<ns5:Country>NL</ns5:Country>
-							<ns5:Area unitCode="ha">15.5146</ns5:Area>
-							<ns5:RegulatorySoiltypeCode listID="CL021">KZ</ns5:RegulatorySoiltypeCode>
-							<ns5:CropTypeCode listID="CL263">1010201</ns5:CropTypeCode>
-							<ns5:VarietyCode listID="CL232">15194</ns5:VarietyCode>
-							<ns5:CropProductionPurposeCode listID="CL251">166</ns5:CropProductionPurposeCode>
-							<ns5:Border>
+						</ns4:Border>
+						<ns4:CropField>
+							<ns4:CropFieldID>AGRONL12345777CFDCROPR2013TRW674</ns4:CropFieldID>
+							<ns4:CropFieldDesignator>Oostwoldjerweg3</ns4:CropFieldDesignator>
+							<ns4:BeginDate>2013-01-01T00:00:00+01:00</ns4:BeginDate>
+							<ns4:EndDate>2013-12-31T00:00:00+01:00</ns4:EndDate>
+							<ns4:Country>NL</ns4:Country>
+							<ns4:Area unitCode="ha">15.5146</ns4:Area>
+							<ns4:RegulatorySoiltypeCode listID="CL021">KZ</ns4:RegulatorySoiltypeCode>
+							<ns4:CropTypeCode listID="CL263">1010201</ns4:CropTypeCode>
+							<ns4:VarietyCode listID="CL232">15194</ns4:VarietyCode>
+							<ns4:CropProductionPurposeCode listID="CL251">166</ns4:CropProductionPurposeCode>
+							<ns4:Border>
 								<ns2:exterior>
 									<ns2:LinearRing>
 										<ns2:posList srsName="EPSG:4326">6.8953674965020699 53.2452928601257653 6.8953591023719785 53.2453558017855499
@@ -238,11 +231,11 @@
 										</ns2:posList>
 									</ns2:LinearRing>
 								</ns2:exterior>
-							</ns5:Border>
-						</ns5:CropField>
-					</ns5:Field>
-				</ns5:Farm>
-			</ns3:CroppingSchemeMessage>
-		</ns3:getCroppingSchemeResponse>
+							</ns4:Border>
+						</ns4:CropField>
+					</ns4:Field>
+				</ns4:Farm>
+			</ns3:CropRecordingMessage>
+		</ns3:getCropRecordingResponse>
 	</S:Body>
 </S:Envelope>

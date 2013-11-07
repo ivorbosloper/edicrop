@@ -22,6 +22,7 @@ import nl.agroconnect.wsEdiCrop.v4_0.PutCropRecordingResponse;
 import nl.agroconnect.wsEdiCrop.v4_0.PutCroppingAdviceRequest;
 import nl.agroconnect.wsEdiCrop.v4_0.PutCroppingAdviceResponse;
 import nl.agroconnect.wsEdiCrop.v4_0.crps.CroppingSchemeMessageType;
+import nl.agroconnect.wsEdiCrop.v4_0.crpr.CropRecordingMessageType;
 
 @javax.jws.WebService(
                       serviceName = "EdiService",
@@ -51,15 +52,17 @@ public class EdiPortTypeImpl implements EdiPortType {
     }
 
     public GetCropRecordingResponse getCropRecording(GetCropRecordingRequest payload) { 
-        GetCropRecordingResponse _return = null;
-        return _return;
+    	CropRecordingMessageType msg = CrprData.message(payload);
+    	return new GetCropRecordingResponse(0, payload.getMessageId(), new BigDecimal(2013), msg);
     }
 
+    // TODO
     public PutCropRecordingResponse putCropRecording(PutCropRecordingRequest payload) { 
         PutCropRecordingResponse _return = null;
         return _return;
     }
 
+    // TODO
     public PutCroppingAdviceResponse putCroppingAdvice(PutCroppingAdviceRequest payload) { 
         PutCroppingAdviceResponse _return = null;
         return _return;
