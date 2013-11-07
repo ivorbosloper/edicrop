@@ -2,7 +2,6 @@
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Conny Graumans (EDI Agro Vereniging) -->
 <!--AgroConnect-->
 <!--XSD's voor de webservice EDI-Crop v4.0-->
-<!--30mei13: eerste versie aangemaakt door Conny Graumans, Willem Dantuma en Ivor Bosloper-->
 <xsd:schema xmlns:wsc="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:crpr="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" xmlns:crpa="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingAdvice_v4_0" xmlns:crps="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="http://www.unece.org/uncefact/data/standard/UnqualifiedDataType_10p0.xsd"/>
 	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0.xsd"/>
@@ -12,7 +11,6 @@
 	<xsd:element name="getCroppingSchemeListRequest">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Authenticationtoken" type="cdt:TypeAuthenticationtoken"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 			</xsd:sequence>
@@ -31,7 +29,6 @@
 	<xsd:element name="getCroppingSchemeRequest">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Authenticationtoken" type="cdt:TypeAuthenticationtoken"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 				<xsd:element name="FarmID" type="udt:IDType"/>
@@ -51,7 +48,6 @@
 	<xsd:element name="getCropRecordingListRequest">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Authenticationtoken" type="cdt:TypeAuthenticationtoken"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 			</xsd:sequence>
@@ -70,7 +66,6 @@
 	<xsd:element name="getCropRecordingRequest">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Authenticationtoken" type="cdt:TypeAuthenticationtoken"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 				<xsd:element name="FarmID" type="udt:IDType"/>
@@ -90,7 +85,6 @@
 	<xsd:element name="putCroppingAdviceRequest">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Authenticationtoken" type="cdt:TypeAuthenticationtoken"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 				<xsd:element name="CroppingAdviceMessage" type="crpa:CroppingAdviceMessageType" minOccurs="0"/>
@@ -100,7 +94,7 @@
 	<xsd:element name="putCroppingAdviceResponse">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Status" type="cdt:TypeAuthenticationtoken"/>
+				<xsd:element name="Status" type="cdt:StatusCodeType"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 			</xsd:sequence>
@@ -109,7 +103,6 @@
 	<xsd:element name="putCropRecordingRequest">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Authenticationtoken" type="cdt:TypeAuthenticationtoken"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 				<xsd:element name="CropRecordingMessage" type="crpr:CropRecordingMessageType" minOccurs="0"/>
@@ -123,6 +116,16 @@
 				<xsd:element name="CropYear" type="cdt:Decimal4Type"/>
 				<xsd:element name="MessageId" type="cdt:TypeMessageId"/>
 			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="UsernameToken">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Username"/>
+				<xsd:element name="Password" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="Id" type="xsd:ID"/>
+			<xsd:anyAttribute namespace="##other"/>
 		</xsd:complexType>
 	</xsd:element>
 </xsd:schema>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Conny Graumans (EDI Agro Vereniging) -->
+<!-- versie 5sep13-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gmlc="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="UnqualifiedDataType_10p0.xsd"/>
+	<xsd:complexType name="AbstractRingPropertyType">
+		<xsd:sequence>
+			<xsd:element name="LinearRing" type="gmlc:LinearRingType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DirectPositionListType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="srsName"/>
+				<xsd:attribute name="srsDimension"/>
+				<xsd:attribute name="axisLabels"/>
+				<xsd:attribute name="uomLabels"/>
+				<xsd:attribute name="count"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="GridpointType">
+		<xsd:sequence>
+			<xsd:element name="GridIDRef" type="udt:IDType"/>
+			<xsd:element name="X" type="udt:TextType"/>
+			<xsd:element name="Y" type="udt:TextType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LinearRingType">
+		<xsd:sequence>
+			<xsd:element name="posList" type="gmlc:DirectPositionListType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MultiSurfaceType">
+		<xsd:choice>
+			<xsd:element name="Polygon" type="gmlc:PolygonType" minOccurs="0"/>
+			<xsd:element name="Gridpoint" type="gmlc:GridpointType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="PolygonType">
+		<xsd:sequence>
+			<xsd:element name="exterior" type="gmlc:AbstractRingPropertyType"/>
+			<xsd:element name="interior" type="gmlc:AbstractRingPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

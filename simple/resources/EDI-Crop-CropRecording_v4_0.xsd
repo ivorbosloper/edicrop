@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Conny Graumans (EDI Agro Vereniging) -->
-<!-- 130501, CG: eerste aanzet.-->
-<!-- 130530, CG: crop aangepast in crpr-->
-<!-- 130708, CG: qdt en ram verwijzingen verwijderd ivm out of memory inlezen wsdl's-->
-<!-- 130715, CG: crpp.QuantityType vervangen door crpp.ANLQuantityType-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crpr="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:ccts="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
-	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="http://www.unece.org/uncefact/data/standard/UnqualifiedDataType_10p0.xsd"/>
-	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0.xsd"/>
-	<xsd:import namespace="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" schemaLocation="http://www.unece.org/uncefact/identifierlist/standard/ISO_ISOTwoletterCountryCode_SecondEdition2006VI-8.xsd"/>
+<!-- versie 5sep13-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crpr="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:gmlc="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:ccts="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CropRecording_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
+	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="UnqualifiedDataType_10p0.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="SimpleTypes_EDI-Crop_v4_0.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0" schemaLocation="GML_Types_EDI-Crop_v4_0.xsd"/>
+	<xsd:import namespace="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" schemaLocation="ISO_ISOTwoletterCountryCode_SecondEdition2006VI-8.xsd"/>
 	<xsd:element name="CropRecordingMessage" type="crpr:CropRecordingMessageType"/>
-	<xsd:complexType name="AbstractRingPropertyType">
-		<xsd:sequence>
-			<xsd:element name="LinearRing" type="crpr:LinearRingType"/>
-		</xsd:sequence>
-	</xsd:complexType>
 	<xsd:complexType name="AdvisedMineralsFarmType">
 		<xsd:sequence>
-			<xsd:element name="AdvisedNitrogenOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AdvisedNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AdvisedPhosphateOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AdvisedPhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="AdvisedNitrogenOrganic" type="crpr:MeasureType"/>
+			<xsd:element name="AdvisedNitrogenTotal" type="crpr:MeasureType"/>
+			<xsd:element name="AdvisedPhosphateOrganic" type="crpr:MeasureType"/>
+			<xsd:element name="AdvisedPhosphateTotal" type="crpr:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="AllocationType">
@@ -28,32 +21,30 @@
 			<xsd:element name="ThirdPartyAllocationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="AllocationType" type="udt:CodeType"/>
 			<xsd:element name="ProductCode" type="udt:CodeType"/>
-			<xsd:element name="ProductDesignator" type="udt:TextType"/>
-			<xsd:element name="Quantity" type="crpr:ANLQuantityType"/>
+			<xsd:element name="ProductDesignator" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="BatchID" type="udt:IDType" minOccurs="0"/>
 			<xsd:element name="BatchThirdPartyID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0"/>
+			<xsd:element name="Area" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:element name="Quantity" type="crpr:MeasureType"/>
+				<xsd:element name="Rate" type="crpr:MeasureType"/>
+			</xsd:choice>
+			<xsd:element name="ProductComposition" type="crpr:CompositionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ProductCharacteristic" type="crpr:PropertyVariableType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="ANLQuantityType">
-		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
-				<xsd:attribute name="unitCode" type="cdt:unitCodeType"/>
-			</xsd:extension>
-		</xsd:simpleContent>
 	</xsd:complexType>
 	<xsd:complexType name="AllowedMineralsFarmType">
 		<xsd:sequence>
-			<xsd:element name="AllowedNitrogenOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="AllowedNitrogenOrganic" type="crpr:MeasureType"/>
+			<xsd:element name="AllowedNitrogenTotal" type="crpr:MeasureType"/>
+			<xsd:element name="AllowedPhosphateOrganic" type="crpr:MeasureType"/>
+			<xsd:element name="AllowedPhosphateTotal" type="crpr:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="CertificateType">
 		<xsd:sequence>
 			<xsd:element name="CertificateID" type="udt:IDType"/>
-			<xsd:element name="CertificateDesignator" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CertificateDesignator" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="ValidityStartDate" type="udt:DateTimeType" minOccurs="0"/>
 			<xsd:element name="ValidityEndDate" type="udt:DateTimeType" minOccurs="0"/>
 		</xsd:sequence>
@@ -61,8 +52,8 @@
 	<xsd:complexType name="CompositionType">
 		<xsd:sequence>
 			<xsd:element name="ProductElementCode" type="udt:CodeType"/>
-			<xsd:element name="ProductElementDesignator" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="Quantity" type="cdt:Decimal8_2Type"/>
+			<xsd:element name="ProductElementDesignator" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Quantity" type="crpr:MeasureType"/>
 			<xsd:element name="ConcentrationCode" type="udt:TextType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -91,15 +82,15 @@
 	<xsd:complexType name="CropFieldType">
 		<xsd:sequence>
 			<xsd:element name="CropFieldID" type="udt:IDType"/>
-			<xsd:element name="CropFieldDesignator" type="udt:TextType"/>
+			<xsd:element name="CropFieldDesignator" type="xsd:string"/>
 			<xsd:element name="ThirdPartyCropFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="BeginDate" type="udt:DateTimeType"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
 			<xsd:element name="CertificateIDRef" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="ContractIDRef" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Country" type="ccts:ISOTwoletterCountryCodeIdentifierContentType"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
-			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType"/>
+			<xsd:element name="Area" type="crpr:MeasureType"/>
+			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="SoilObservation" type="crpr:PropertyZoneType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="CropTypeCode" type="udt:CodeType"/>
 			<xsd:element name="VarietyCode" type="udt:CodeType"/>
@@ -109,8 +100,8 @@
 			<xsd:element name="PrecedingCropField" type="crpr:PrecedingCropFieldType" minOccurs="0"/>
 			<xsd:element name="CropFieldCharacteristic" type="crpr:PropertyVariableType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="ExtremeWeatherCondition" type="crpr:PropertyVariableType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0"/>
-			<xsd:element name="Operation" type="crpr:OperationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
+			<xsd:element name="Task" type="crpr:TaskType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="ProduceDelivery" type="crpr:DeliveryType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -118,7 +109,7 @@
 		<xsd:sequence>
 			<xsd:element name="DeliveryNoteID" type="udt:IDType"/>
 			<xsd:element name="DeliveryDateTime" type="udt:DateTimeType"/>
-			<xsd:element name="DeliveryNoteQuantity" type="crpr:ANLQuantityType"/>
+			<xsd:element name="DeliveryNoteQuantity" type="crpr:MeasureType"/>
 			<xsd:element name="DeliveryLocationID" type="udt:IDType" minOccurs="0"/>
 			<xsd:element name="DeliveryLocationName" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="DeliveryCharacteristic" type="crpr:PropertyVariableType" minOccurs="0" maxOccurs="unbounded"/>
@@ -129,17 +120,6 @@
 			<xsd:element name="DeliveryCharacteristicCode" type="udt:CodeType"/>
 			<xsd:element name="DeliveryCharacteristicValue" type="udt:TextType"/>
 		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="DirectPositionListType">
-		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
-				<xsd:attribute name="srsName"/>
-				<xsd:attribute name="srsDimension"/>
-				<xsd:attribute name="axisLabels"/>
-				<xsd:attribute name="uomLabels"/>
-				<xsd:attribute name="count"/>
-			</xsd:extension>
-		</xsd:simpleContent>
 	</xsd:complexType>
 	<xsd:complexType name="DocumentType">
 		<xsd:sequence>
@@ -162,7 +142,7 @@
 			<xsd:element name="URIID" type="udt:IDType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="ExactTimingType">
+	<xsd:complexType name="AbsoluteTimingType">
 		<xsd:sequence>
 			<xsd:element name="BeginDate" type="udt:DateTimeType"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
@@ -176,33 +156,27 @@
 	</xsd:complexType>
 	<xsd:complexType name="FarmType">
 		<xsd:sequence>
-			<xsd:element name="FarmContact" type="crpr:SpecifiedPartyType"/>
+			<xsd:element name="FarmID" type="udt:IDType"/>
+			<xsd:element name="FarmDesignator" type="xsd:string"/>
+			<xsd:element name="FarmContact" type="crpr:SpecifiedPartyType" minOccurs="0"/>
 			<xsd:element name="ThirdPartyFarmID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Certificate" type="crpr:CertificateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Contract" type="crpr:ContractType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Field" type="crpr:FieldType" maxOccurs="unbounded"/>
-			<xsd:element name="Product" type="crpr:ProductType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="FieldType">
 		<xsd:sequence>
 			<xsd:element name="FieldID" type="udt:IDType"/>
-			<xsd:element name="FieldDesignator" type="udt:TextType"/>
+			<xsd:element name="FieldDesignator" type="xsd:string"/>
 			<xsd:element name="ThirdPartyFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="BeginDate" type="udt:DateTimeType" minOccurs="0"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
-			<xsd:element name="Area" type="udt:MeasureType"/>
-			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="RegularOrOrganicCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0"/>
+			<xsd:element name="Area" type="crpr:MeasureType"/>
+			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType"/>
+			<xsd:element name="RegularOrOrganicCode" type="udt:CodeType"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
 			<xsd:element name="CropField" type="crpr:CropFieldType" maxOccurs="unbounded"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="GridpointType">
-		<xsd:sequence>
-			<xsd:element name="GridIDRef" type="udt:IDType"/>
-			<xsd:element name="X" type="udt:TextType"/>
-			<xsd:element name="Y" type="udt:TextType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="GUIDType">
@@ -215,56 +189,53 @@
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
-	<xsd:complexType name="LinearRingType">
-		<xsd:sequence>
-			<xsd:element name="posList" type="crpr:DirectPositionListType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="MultiSurfaceType">
-		<xsd:choice>
-			<xsd:element name="Polygon" type="crpr:PolygonType" minOccurs="0"/>
-			<xsd:element name="Gridpoint" type="crpr:GridpointType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:choice>
+	<xsd:complexType name="MeasureType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:decimal">
+				<xsd:attribute name="unitCode" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
 	</xsd:complexType>
 	<xsd:complexType name="NutrientBalanceCropType">
 		<xsd:sequence>
-			<xsd:element name="AllowedNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateOrganic" type="cdt:Decimal12Type"/>
+			<xsd:element name="AllowedNitrogenTotal" type="crpr:MeasureType"/>
+			<xsd:element name="AllowedPhosphateTotal" type="crpr:MeasureType"/>
+			<xsd:element name="AllowedPhosphateOrganic" type="crpr:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="NutrientBalanceFarmType">
 		<xsd:sequence>
-			<xsd:element name="BalanceNitrogenOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="BalanceNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="BalancePhosphateOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="BalancePhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="BalanceNitrogenOrganic" type="crpr:MeasureType"/>
+			<xsd:element name="BalanceNitrogenTotal" type="crpr:MeasureType"/>
+			<xsd:element name="BalancePhosphateOrganic" type="crpr:MeasureType"/>
+			<xsd:element name="BalancePhosphateTotal" type="crpr:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="ObservationType">
 		<xsd:sequence>
 			<xsd:element name="ObservationID" type="udt:IDType"/>
 			<xsd:element name="PropertyVariableCode" type="udt:CodeType"/>
-			<xsd:element name="PropertyVariableValue" type="udt:MeasureType"/>
+			<xsd:element name="PropertyVariableValue" type="crpr:MeasureType"/>
 			<xsd:element name="ObservationActualStartDateTime" type="udt:DateTimeType" minOccurs="0"/>
 			<xsd:element name="ObservationActualEndDateTime" type="udt:DateTimeType" minOccurs="0"/>
-			<xsd:element name="RelativeBeginHeight" type="udt:MeasureType" minOccurs="0"/>
-			<xsd:element name="RelativeEndHeight" type="udt:MeasureType" minOccurs="0"/>
-			<xsd:element name="RelativeHeight" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="RelativeBeginHeight" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="RelativeEndHeight" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="RelativeHeight" type="crpr:MeasureType" minOccurs="0"/>
 			<xsd:element name="SampleProtocol" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="AnalysedMethodLocalTypeCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="OperationType">
 		<xsd:sequence>
 			<xsd:element name="OperationID" type="udt:IDType"/>
+			<xsd:element name="OperationDesignator" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="ThirdPartyOperationID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="OperationStage" type="udt:CodeType"/>
 			<xsd:element name="CulturalPracticeCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="OperationTechniqueCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="TaskTypeCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="ExactTiming" type="crpr:ExactTimingType" minOccurs="0"/>
+			<xsd:element name="AbsoluteTiming" type="crpr:AbsoluteTimingType" minOccurs="0"/>
+			<xsd:element name="OperationCharacteristic" type="crpr:PropertyVariableType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="TreatmentZone" type="crpr:TreatmentZoneType" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -286,42 +257,24 @@
 	</xsd:complexType>
 	<xsd:complexType name="PhosphateConditionType">
 		<xsd:sequence>
-			<xsd:element name="ArablelandPhosphatePoor" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="ArablelandPhosphateLow" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="ArablelandPhosphateNeutral" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="ArablelandPhosphateHigh" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphatePoor" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphateLow" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphateNeutral" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphateHigh" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferOrganicNextYear" type="cdt:Decimal12Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferTotalNextYear" type="cdt:Decimal12Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferOrganicPreviousYear" type="cdt:Decimal12Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferTotalPreviousYear" type="cdt:Decimal12Type" minOccurs="0"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="PolygonType">
-		<xsd:sequence>
-			<xsd:element name="exterior" type="crpr:AbstractRingPropertyType"/>
-			<xsd:element name="interior" type="crpr:AbstractRingPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ArablelandPhosphatePoor" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="ArablelandPhosphateLow" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="ArablelandPhosphateNeutral" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="ArablelandPhosphateHigh" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphatePoor" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphateLow" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphateNeutral" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphateHigh" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferOrganicNextYear" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferTotalNextYear" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferOrganicPreviousYear" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferTotalPreviousYear" type="crpr:MeasureType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="PrecedingCropFieldType">
 		<xsd:sequence>
 			<xsd:element name="PrecedingCropFieldID" type="udt:IDType"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="ProductType">
-		<xsd:sequence>
-			<xsd:element name="AllocationType" type="udt:CodeType"/>
-			<xsd:element name="ProductID" type="udt:IDType" minOccurs="0"/>
-			<xsd:element name="ProductDesignator" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="RegulatoryWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
-			<xsd:element name="AgronomicWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
-			<xsd:element name="Quantity" type="crpr:ANLQuantityType" minOccurs="0"/>
-			<xsd:element name="AmountPerAreaUnit" type="crpr:ANLQuantityType" minOccurs="0"/>
-			<xsd:element name="Composition" type="crpr:CompositionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Area" type="crpr:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="PropertyVariableType">
@@ -335,25 +288,25 @@
 			<xsd:element name="PropertyVariableCode" type="udt:CodeType"/>
 			<xsd:element name="StartTime" type="udt:DateTimeType" minOccurs="0"/>
 			<xsd:element name="StopTime" type="udt:DateTimeType" minOccurs="0"/>
-			<xsd:element name="Duration" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="Duration" type="crpr:MeasureType" minOccurs="0"/>
 			<xsd:element name="AnalysesMethodCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:choice>
-				<xsd:element name="Value" type="udt:MeasureType" minOccurs="0"/>
-				<xsd:element name="Quantity" type="udt:MeasureType" minOccurs="0"/>
-				<xsd:element name="Rate" type="udt:MeasureType" minOccurs="0"/>
+				<xsd:element name="Value" type="crpr:MeasureType" minOccurs="0"/>
+				<xsd:element name="Quantity" type="crpr:MeasureType" minOccurs="0"/>
+				<xsd:element name="Rate" type="crpr:MeasureType" minOccurs="0"/>
 			</xsd:choice>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="PropertyZoneType">
 		<xsd:sequence>
 			<xsd:element name="PropertyZoneID" type="udt:IDType"/>
-			<xsd:element name="PropertyZoneDesignator" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="PropertyZoneDesignator" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="PropertyValue" type="crpr:PropertyValueType" maxOccurs="unbounded"/>
 			<xsd:element name="VerticalLayer" type="crpr:VerticalLayerType" minOccurs="0"/>
 			<xsd:element name="PropertyZoneSurface" minOccurs="0">
 				<xsd:complexType>
 					<xsd:complexContent>
-						<xsd:extension base="crpr:MultiSurfaceType"/>
+						<xsd:extension base="gmlc:MultiSurfaceType"/>
 					</xsd:complexContent>
 				</xsd:complexType>
 			</xsd:element>
@@ -411,6 +364,16 @@
 			<xsd:element name="CountryID" type="ccts:ISOTwoletterCountryCodeIdentifierContentType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:complexType name="TaskType">
+		<xsd:sequence>
+			<xsd:element name="TaskID" type="udt:IDType"/>
+			<xsd:element name="EarliestBeginTime" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="LatestEndTime" type="udt:DateTimeType" minOccurs="0"/>
+			<xsd:element name="TaskDesignator" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="TaskStatusCode" type="udt:CodeType"/>
+			<xsd:element name="Operation" type="crpr:OperationType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
 	<xsd:complexType name="TreatmentCharacteristicType">
 		<xsd:sequence>
 			<xsd:element name="TreatmentCharacteristicCode" type="udt:CodeType"/>
@@ -422,18 +385,18 @@
 			<xsd:element name="TreatmentZoneID" type="udt:IDType"/>
 			<xsd:element name="ThirdPartyTreatmentZoneID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="TreatmentCharacteristic" type="crpr:PropertyVariableType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0"/>
-			<xsd:element name="Border" type="crpr:PolygonType" minOccurs="0"/>
+			<xsd:element name="Area" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
 			<xsd:element name="ProductAllocation" type="crpr:AllocationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="ProduceAllocation" type="crpr:AllocationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="VerticalLayerType">
 		<xsd:sequence>
-			<xsd:element name="RelativeBeginHeight" type="udt:MeasureType" minOccurs="0"/>
-			<xsd:element name="RelativeEndHeight" type="udt:MeasureType" minOccurs="0"/>
-			<xsd:element name="AbsoluteBeginHeight" type="udt:MeasureType" minOccurs="0"/>
-			<xsd:element name="AbsoluteEndHeight" type="udt:MeasureType" minOccurs="0"/>
+			<xsd:element name="RelativeBeginHeight" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="RelativeEndHeight" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="AbsoluteBeginHeight" type="crpr:MeasureType" minOccurs="0"/>
+			<xsd:element name="AbsoluteEndHeight" type="crpr:MeasureType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 </xsd:schema>

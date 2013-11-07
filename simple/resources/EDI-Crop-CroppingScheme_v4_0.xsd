@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Conny Graumans (EDI Agro Vereniging) -->
-<!-- 120918, Conny: eerste versie, afgeleid van EDI-Crop-croppingscheme-->
-<!-- 121024, CG: correcties doorgevoerd, afgestemd met aangepast croppingadvice-->
-<!-- 130520, CG: Polygon is Border geworden-->
-<!-- 130530, CG: crps: verandert in crps:-->
-<!-- 130708, CG: qdt en ram verwijzingen verwijderd ivm out of memory inlezen wsdl's-->
-<!-- 130715, CG: crps.QuantityType vervangen door udt.QuantityType-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crps="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:ccts="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
-	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="http://www.unece.org/uncefact/data/standard/UnqualifiedDataType_10p0.xsd"/>
-	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0.xsd"/>
-	<xsd:import namespace="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" schemaLocation="http://www.unece.org/uncefact/identifierlist/standard/ISO_ISOTwoletterCountryCode_SecondEdition2006VI-8.xsd"/>
+<!-- versie 5sep13-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crps="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" xmlns:cdt="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" xmlns:gmlc="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" xmlns:ccts="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" targetNamespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/EDI-Crop-CroppingScheme_v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.0">
+	<xsd:import namespace="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:10" schemaLocation="UnqualifiedDataType_10p0.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/SimpleTypes_EDI-Crop_v4_0" schemaLocation="SimpleTypes_EDI-Crop_v4_0.xsd"/>
+	<xsd:import namespace="http://www.agroconnect.nl/Portals/10/XSDs/XSDs_EDI_Crop/v4_0/GML_Types_EDI-Crop_v4_0" schemaLocation="GML_Types_EDI-Crop_v4_0.xsd"/>
+	<xsd:import namespace="urn:un:unece:uncefact:identifierlist:standard:5:ISO316612A:SecondEdition2006VI-8" schemaLocation="ISO_ISOTwoletterCountryCode_SecondEdition2006VI-8.xsd"/>
 	<xsd:element name="CroppingSchemeMessage" type="crps:CroppingSchemeMessageType"/>
-	<xsd:complexType name="AbstractRingPropertyType">
-		<xsd:sequence>
-			<xsd:element name="LinearRing" type="crps:LinearRingType"/>
-		</xsd:sequence>
-	</xsd:complexType>
 	<xsd:complexType name="AdvisedMineralsFarmType">
 		<xsd:sequence>
-			<xsd:element name="AdvisedNitrogenOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AdvisedNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AdvisedPhosphateOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AdvisedPhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="AdvisedNitrogenOrganic" type="crps:MeasureType"/>
+			<xsd:element name="AdvisedNitrogenTotal" type="crps:MeasureType"/>
+			<xsd:element name="AdvisedPhosphateOrganic" type="crps:MeasureType"/>
+			<xsd:element name="AdvisedPhosphateTotal" type="crps:MeasureType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AllocationType">
+		<xsd:sequence>
+			<xsd:element name="AllocationType" type="udt:CodeType"/>
+			<xsd:element name="AllocationID" type="udt:IDType"/>
+			<xsd:element name="ProductCode" type="udt:CodeType"/>
+			<xsd:element name="Quantity" type="crps:MeasureType"/>
+			<xsd:element name="BatchID" type="udt:IDType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="AllowedMineralsFarmType">
 		<xsd:sequence>
-			<xsd:element name="AllowedNitrogenOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="AllowedNitrogenOrganic" type="crps:MeasureType"/>
+			<xsd:element name="AllowedNitrogenTotal" type="crps:MeasureType"/>
+			<xsd:element name="AllowedPhosphateOrganic" type="crps:MeasureType"/>
+			<xsd:element name="AllowedPhosphateTotal" type="crps:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="CompositionType">
 		<xsd:sequence>
 			<xsd:element name="ProductElementID" type="udt:IDType"/>
-			<xsd:element name="ProductElementDesignator" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="Quantity" type="cdt:Decimal8_2Type"/>
+			<xsd:element name="ProductElementDesignator" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Quantity" type="crps:MeasureType"/>
 			<xsd:element name="ConcentrationCode" type="udt:TextType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -57,12 +57,12 @@
 	<xsd:complexType name="CropFieldType">
 		<xsd:sequence>
 			<xsd:element name="CropFieldID" type="udt:IDType"/>
-			<xsd:element name="CropFieldDesignator" type="udt:TextType"/>
+			<xsd:element name="CropFieldDesignator" type="xsd:string"/>
 			<xsd:element name="ThirdPartyCropFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="BeginDate" type="udt:DateTimeType"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
 			<xsd:element name="Country" type="ccts:ISOTwoletterCountryCodeIdentifierContentType"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
+			<xsd:element name="Area" type="crps:MeasureType"/>
 			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType"/>
 			<xsd:element name="CropTypeCode" type="udt:CodeType"/>
 			<xsd:element name="VarietyCode" type="udt:CodeType"/>
@@ -70,19 +70,8 @@
 			<xsd:element name="CropProductionPurposeCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="CropProductionSequence" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="PrecedingCropField" type="crps:PrecedingCropFieldType" minOccurs="0"/>
-			<xsd:element name="Border" type="crps:PolygonType" minOccurs="0"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
 		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="DirectPositionListType">
-		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
-				<xsd:attribute name="srsName"/>
-				<xsd:attribute name="srsDimension"/>
-				<xsd:attribute name="axisLabels"/>
-				<xsd:attribute name="uomLabels"/>
-				<xsd:attribute name="count"/>
-			</xsd:extension>
-		</xsd:simpleContent>
 	</xsd:complexType>
 	<xsd:complexType name="DocumentType">
 		<xsd:sequence>
@@ -106,7 +95,7 @@
 			<xsd:element name="URIID" type="udt:IDType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="ExactTimingType">
+	<xsd:complexType name="AbsoluteTimingType">
 		<xsd:sequence>
 			<xsd:element name="BeginDate" type="udt:DateTimeType"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
@@ -121,7 +110,9 @@
 	</xsd:complexType>
 	<xsd:complexType name="FarmType">
 		<xsd:sequence>
-			<xsd:element name="FarmContact" type="crps:SpecifiedPartyType"/>
+			<xsd:element name="FarmID" type="udt:IDType"/>
+			<xsd:element name="FarmDesignator" type="xsd:string"/>
+			<xsd:element name="FarmContact" type="crps:SpecifiedPartyType" minOccurs="0"/>
 			<xsd:element name="PreferredSupplierIdRef" type="udt:IDType" minOccurs="0"/>
 			<xsd:element name="ThirdPartyFarmID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="FarmClassification" type="crps:FarmClassificationType"/>
@@ -131,17 +122,19 @@
 	<xsd:complexType name="FieldType">
 		<xsd:sequence>
 			<xsd:element name="FieldID" type="udt:IDType"/>
-			<xsd:element name="FieldDesignator" type="udt:TextType"/>
+			<xsd:element name="FieldDesignator" type="xsd:string"/>
 			<xsd:element name="ThirdPartyFieldID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="BeginDate" type="udt:DateTimeType"/>
 			<xsd:element name="EndDate" type="udt:DateTimeType" minOccurs="0"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
+			<xsd:element name="Area" type="crps:MeasureType"/>
+			<xsd:element name="RegulatorySoiltypeCode" type="udt:CodeType"/>
+			<xsd:element name="RegularOrOrganicCode" type="udt:CodeType"/>
 			<xsd:element name="SamplingProtocol" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="Pal" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="Pw" type="udt:TextType" minOccurs="0"/>
 			<xsd:element name="AboveAveragePotatoes" type="cdt:YesNoType" minOccurs="0"/>
 			<xsd:element name="AboveAverageSugarbeet" type="cdt:YesNoType" minOccurs="0"/>
-			<xsd:element name="Border" type="crps:PolygonType" minOccurs="0"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
 			<xsd:element name="CropField" type="crps:CropFieldType" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -155,24 +148,26 @@
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
-	<xsd:complexType name="LinearRingType">
-		<xsd:sequence>
-			<xsd:element name="posList" type="crps:DirectPositionListType"/>
-		</xsd:sequence>
+	<xsd:complexType name="MeasureType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:decimal">
+				<xsd:attribute name="unitCode" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
 	</xsd:complexType>
 	<xsd:complexType name="NutrientBalanceCropType">
 		<xsd:sequence>
-			<xsd:element name="AllowedNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhoshhateTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="AllowedPhosphateOrganic" type="cdt:Decimal12Type"/>
+			<xsd:element name="AllowedNitrogenTotal" type="crps:MeasureType"/>
+			<xsd:element name="AllowedPhoshhateTotal" type="crps:MeasureType"/>
+			<xsd:element name="AllowedPhosphateOrganic" type="crps:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="NutrientBalanceFarmType">
 		<xsd:sequence>
-			<xsd:element name="BalanceNitrogenOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="BalanceNitrogenTotal" type="cdt:Decimal12Type"/>
-			<xsd:element name="BalancePhosphateOrganic" type="cdt:Decimal12Type"/>
-			<xsd:element name="BalancePhosphateTotal" type="cdt:Decimal12Type"/>
+			<xsd:element name="BalanceNitrogenOrganic" type="crps:MeasureType"/>
+			<xsd:element name="BalanceNitrogenTotal" type="crps:MeasureType"/>
+			<xsd:element name="BalancePhosphateOrganic" type="crps:MeasureType"/>
+			<xsd:element name="BalancePhosphateTotal" type="crps:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="OperationType">
@@ -182,7 +177,7 @@
 			<xsd:element name="OperationStage" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="CulturalPracticeCode" type="udt:CodeType" minOccurs="0"/>
 			<xsd:element name="OperationTechniqueCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="ExactTiming" type="crps:ExactTimingType" minOccurs="0"/>
+			<xsd:element name="AbsoluteTiming" type="crps:AbsoluteTimingType" minOccurs="0"/>
 			<xsd:element name="RelativeTiming" type="crps:RelativeTimingType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="TreatmentZone" type="crps:TreatmentZoneType" maxOccurs="unbounded"/>
 		</xsd:sequence>
@@ -205,39 +200,24 @@
 	</xsd:complexType>
 	<xsd:complexType name="PhosphateConditionType">
 		<xsd:sequence>
-			<xsd:element name="ArablelandPhosphatePoor" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="ArablelandPhosphateLow" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="ArablelandPhosphateNeutral" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="ArablelandPhosphateHigh" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphatePoor" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphateLow" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphateNeutral" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="GrasslandPhosphateHigh" type="cdt:Decimal6Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferOrganicNextYear" type="cdt:Decimal12Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferTotalNextYear" type="cdt:Decimal12Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferOrganicPreviousYear" type="cdt:Decimal12Type" minOccurs="0"/>
-			<xsd:element name="PhosphateTransferTotalPreviousYear" type="cdt:Decimal12Type" minOccurs="0"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="PolygonType">
-		<xsd:sequence>
-			<xsd:element name="exterior" type="crps:AbstractRingPropertyType"/>
-			<xsd:element name="interior" type="crps:AbstractRingPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ArablelandPhosphatePoor" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="ArablelandPhosphateLow" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="ArablelandPhosphateNeutral" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="ArablelandPhosphateHigh" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphatePoor" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphateLow" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphateNeutral" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="GrasslandPhosphateHigh" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferOrganicNextYear" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferTotalNextYear" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferOrganicPreviousYear" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="PhosphateTransferTotalPreviousYear" type="crps:MeasureType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="PrecedingCropFieldType">
 		<xsd:sequence>
 			<xsd:element name="PrecedingCropFieldID" type="udt:IDType"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="AllocationType">
-		<xsd:sequence>
-			<xsd:element name="AllocationType" type="udt:CodeType"/>
-			<xsd:element name="AllocationID" type="udt:IDType"/>
-			<xsd:element name="ProductCode" type="udt:CodeType"/>
-			<xsd:element name="Quantity" type="udt:QuantityType"/>
-			<xsd:element name="BatchID" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="Area" type="crps:MeasureType"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="ProductTypeType">
@@ -245,10 +225,10 @@
 			<xsd:element name="AllocationType" type="udt:CodeType"/>
 			<xsd:element name="ProductTypeIDRef" type="udt:IDType" minOccurs="0"/>
 			<xsd:element name="ProductTypeName" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="RegulatoryWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
-			<xsd:element name="AgronomicWorkingCoefficient" type="cdt:Decimal8_2Type" minOccurs="0"/>
-			<xsd:element name="Quantity" type="udt:QuantityType" minOccurs="0"/>
-			<xsd:element name="AmountPerAreaUnit" type="udt:QuantityType" minOccurs="0"/>
+			<xsd:element name="RegulatoryWorkingCoefficient" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="AgronomicWorkingCoefficient" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="Quantity" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="AmountPerAreaUnit" type="crps:MeasureType" minOccurs="0"/>
 			<xsd:element name="Composition" type="crps:CompositionType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -261,6 +241,19 @@
 			<xsd:element name="RefCropStage" type="udt:TextType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:complexType name="SpecifiedClassificationType">
+		<xsd:sequence>
+			<xsd:element name="ClassCode" type="udt:CodeType" minOccurs="0"/>
+			<xsd:element name="ClassName" type="udt:TextType" minOccurs="0"/>
+			<xsd:element name="CountryID" type="ccts:ISOTwoletterCountryCodeIdentifierContentType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpecifiedCommunicationType">
+		<xsd:sequence>
+			<xsd:element name="URI" type="udt:IDType" minOccurs="0"/>
+			<xsd:element name="CompleteNumber" type="udt:TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
 	<xsd:complexType name="SpecifiedPartyType">
 		<xsd:sequence>
 			<xsd:element name="ID" type="udt:IDType"/>
@@ -270,12 +263,6 @@
 			<xsd:element name="VisitorsAddress" type="crps:StructuredAddressType" minOccurs="0"/>
 			<xsd:element name="PartyContact" type="crps:PartyContactType" minOccurs="0"/>
 			<xsd:element name="Website" type="crps:SpecifiedCommunicationType" minOccurs="0"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="SpecifiedCommunicationType">
-		<xsd:sequence>
-			<xsd:element name="URI" type="udt:IDType" minOccurs="0"/>
-			<xsd:element name="CompleteNumber" type="udt:TextType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="StructuredAddressType">
@@ -296,19 +283,12 @@
 			<xsd:element name="ID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	<xsd:complexType name="SpecifiedClassificationType">
-		<xsd:sequence>
-			<xsd:element name="ClassCode" type="udt:CodeType" minOccurs="0"/>
-			<xsd:element name="ClassName" type="udt:TextType" minOccurs="0"/>
-			<xsd:element name="CountryID" type="ccts:ISOTwoletterCountryCodeIdentifierContentType" minOccurs="0"/>
-		</xsd:sequence>
-	</xsd:complexType>
 	<xsd:complexType name="TreatmentZoneType">
 		<xsd:sequence>
 			<xsd:element name="TreatmentZoneID" type="udt:IDType"/>
 			<xsd:element name="ThirdPartyTreatmentZoneID" type="udt:IDType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="Area" type="cdt:Decimal10_2Type" minOccurs="0"/>
-			<xsd:element name="Border" type="crps:PolygonType" minOccurs="0"/>
+			<xsd:element name="Area" type="crps:MeasureType" minOccurs="0"/>
+			<xsd:element name="Border" type="gmlc:PolygonType" minOccurs="0"/>
 			<xsd:element name="ProductAllocation" type="crps:AllocationType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
