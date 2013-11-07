@@ -1,6 +1,13 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop">
-   <soapenv:Header/>
-   <soapenv:Body>
+<soapenv:Envelope xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.agroconnect.nl/Portals/10/XSDs/WS_EDI_Crop/v4_0/XSD_WS-EDI-Crop">
+    <soapenv:Header>
+	    <wsse:Security mustUnderstand="true">
+	       <wsse:UsernameToken>
+	          <wsse:Username>user</wsse:Username>
+	          <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">password</wsse:Password>
+	       </wsse:UsernameToken>
+	    </wsse:Security>   
+    </soapenv:Header>
+   	<soapenv:Body>
       <xsd:getCroppingSchemeRequest>
          <xsd:Authenticationtoken>user|#|password</xsd:Authenticationtoken>
          <xsd:MessageId>123456</xsd:MessageId>
